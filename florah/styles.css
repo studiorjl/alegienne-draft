@@ -858,3 +858,92 @@ body.has-custom-cursor .custom-cursor {
     right: clamp(32px, 5vw, 72px);
   }
 }
+
+/* first bloom offer — landing body content */
+.landing-body {
+  position: relative;
+  z-index: 6;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  min-height: 74svh;
+  padding:
+    clamp(30px, 6vw, 64px) 20px
+    clamp(44px, 8vw, 90px);
+  text-align: center;
+  color: var(--dark-plum);
+  background: transparent;
+}
+
+.landing-inner {
+  display: grid;
+  gap: clamp(12px, 2.6vw, 19px);
+  width: min(100%, 620px);
+}
+
+.landing-verse {
+  margin: 0;
+  font-family: "Courier New", "Noto Serif KR", monospace;
+  font-size: clamp(13px, 3.4vw, 15px);
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  color: var(--dark-plum);
+}
+
+.landing-lead {
+  font-size: clamp(17px, 4.2vw, 21px);
+  letter-spacing: 0.16em;
+}
+
+.landing-price {
+  font-size: clamp(15px, 3.8vw, 18px);
+}
+
+.landing-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 232px;
+  margin-top: clamp(4px, 1.6vw, 10px);
+  padding: 14px 34px;
+  border: 1px solid rgba(26, 13, 12, 0.52);
+  border-radius: 999px;
+  color: var(--paper);
+  text-decoration: none;
+  font-family: "Courier New", "Noto Serif KR", monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  background: transparent;
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease,
+    transform 0.35s ease;
+}
+
+.landing-button:hover,
+.landing-button:focus-visible {
+  background: var(--paper);
+  border-color: var(--paper);
+  color: var(--ivory-blush);
+  transform: translateY(-1px);
+}
+
+.landing-note {
+  font-size: clamp(10.5px, 2.6vw, 12px);
+  opacity: 0.78;
+}
+
+.landing-note a {
+  color: inherit;
+}
+
+/* cascade the landing reveals */
+.landing-inner > :nth-child(1) { --reveal-delay: 0ms; }
+.landing-inner > :nth-child(2) { --reveal-delay: 90ms; }
+.landing-inner > :nth-child(3) { --reveal-delay: 180ms; }
+.landing-inner > :nth-child(4) { --reveal-delay: 260ms; }
+.landing-inner > :nth-child(5) { --reveal-delay: 330ms; }
+.landing-inner > :nth-child(6) { --reveal-delay: 400ms; }
+.landing-inner > :nth-child(7) { --reveal-delay: 470ms; }
+.landing-inner > :nth-child(8) { --reveal-delay: 540ms; }
