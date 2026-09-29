@@ -436,3 +436,30 @@ p { font-size: 0.5rem; line-height: 1.1; opacity: 0.9; color: var(--blush); }
   .texture-bg { animation: none !important; opacity: 1 !important; }
   .smoke-toggle { display: none !important; } /* nothing playing to clear */
 }
+
+/* alegienne universal nav — the menu-open button on plume, mirroring
+   the smoke-toggle's circular blush style, top-right instead of top-left */
+.aleg-menu-btn.plume-nav-open {
+  position: fixed;
+  top: max(14px, env(safe-area-inset-top));
+  right: max(14px, env(safe-area-inset-right));
+  z-index: 5;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--blush-55);
+  border-radius: 999px;
+  background: rgba(31,10,4,0.45);
+  backdrop-filter: blur(6px);
+  color: var(--blush-75);
+  opacity: 0;
+  transform: none;
+  animation: rise-in 1s cubic-bezier(0.16, 1, 0.3, 1) 2.6s both;
+}
+.aleg-menu-btn.plume-nav-open:hover,
+.aleg-menu-btn.plume-nav-open:focus-visible {
+  border-color: var(--blush-90);
+  color: var(--blush);
+}
+.aleg-menu-btn.plume-nav-open span {
+  width: 15px;
+}

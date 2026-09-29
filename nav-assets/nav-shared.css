@@ -1,0 +1,133 @@
+/* Alegienne universal site nav — dropped into every page.
+   Namespaced under .aleg-nav / .aleg-panel so it never collides
+   with a page's own theme classes or variables. */
+
+.aleg-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: clamp(56px, 9vw, 76px);
+  padding: 0 clamp(16px, 4vw, 32px);
+}
+
+.aleg-wordmark {
+  display: block;
+  height: clamp(15px, 2.6vw, 20px);
+  width: auto;
+}
+
+.aleg-menu-btn {
+  position: absolute;
+  right: clamp(16px, 4vw, 32px);
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.aleg-menu-btn span {
+  display: block;
+  width: 19px;
+  height: 1px;
+  background: currentColor;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.aleg-menu-btn[aria-expanded="true"] span:first-child {
+  transform: translateY(3px) rotate(45deg);
+}
+
+.aleg-menu-btn[aria-expanded="true"] span:last-child {
+  transform: translateY(-3px) rotate(-45deg);
+}
+
+.aleg-panel {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  background: #1a0d0c;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease;
+}
+
+.aleg-panel.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.aleg-panel-close {
+  position: absolute;
+  top: clamp(16px, 4vw, 32px);
+  right: clamp(16px, 4vw, 32px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #e8c9b7;
+  cursor: pointer;
+}
+
+.aleg-panel-close span {
+  display: block;
+  width: 19px;
+  height: 1px;
+  background: currentColor;
+  position: absolute;
+}
+
+.aleg-panel-close span:first-child { transform: rotate(45deg); }
+.aleg-panel-close span:last-child { transform: rotate(-45deg); }
+
+.aleg-panel-nav {
+  display: grid;
+  gap: clamp(20px, 4vw, 30px);
+  text-align: center;
+}
+
+.aleg-panel-nav a {
+  color: #e8c9b7;
+  text-decoration: none;
+  font-family: "Courier New", "Noto Serif KR", monospace;
+  font-size: clamp(15px, 3.4vw, 18px);
+  letter-spacing: 0.16em;
+  text-transform: lowercase;
+  opacity: 0.86;
+  transition: opacity 0.25s ease;
+}
+
+.aleg-panel-nav a:hover,
+.aleg-panel-nav a:focus-visible {
+  opacity: 1;
+}
+
+.aleg-panel-nav .aleg-current {
+  opacity: 1;
+  text-decoration: underline;
+  text-decoration-color: rgba(232, 201, 183, 0.45);
+  text-underline-offset: 6px;
+}
+
+body.aleg-panel-open {
+  overflow: hidden;
+}

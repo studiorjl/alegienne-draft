@@ -11,6 +11,7 @@
   <meta property="og:image" content="alegienne_gold.png">
 
   <link rel="icon" type="image/png" href="Alegienne-favicon.png">
+  <link rel="stylesheet" href="/nav-assets/nav-shared.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap">
@@ -39,6 +40,7 @@
       margin: 0;
       min-height: 100vh;
       color: var(--ink);
+
       background:
         radial-gradient(circle at 15% 20%, rgba(214, 169, 160, 0.2), transparent 34rem),
         linear-gradient(145deg, #fffaf3 0%, #f6efe6 48%, #fffdf8 100%);
@@ -55,7 +57,7 @@
       min-height: 100vh;
       display: grid;
       place-items: center;
-      padding: clamp(28px, 6vw, 80px) clamp(18px, 5vw, 64px);
+      padding: clamp(88px, 14vw, 120px) clamp(18px, 5vw, 64px) clamp(28px, 6vw, 80px);
     }
 
     .coming-soon {
@@ -124,6 +126,26 @@
 </head>
 
 <body>
+  <header class="aleg-header">
+    <a href="/" aria-label="Alegienne home">
+      <img class="aleg-wordmark" src="/nav-assets/alegienne-wordmark-dark.png" alt="Alegienne">
+    </a>
+    <button type="button" class="aleg-menu-btn" data-aleg-menu-open aria-expanded="false" aria-label="Open menu">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <div class="aleg-panel" data-aleg-panel aria-hidden="true">
+    <button type="button" class="aleg-panel-close" data-aleg-menu-close aria-label="Close menu">
+      <span></span><span></span>
+    </button>
+    <nav class="aleg-panel-nav" aria-label="Alegienne menu">
+      <a href="/about/">about</a>
+      <a href="/apothecary/">apothecary</a>
+      <a href="/florah">florah &middot; floral design studio</a>
+    </nav>
+  </div>
+
   <main class="page" aria-label="Alegienne coming soon">
     <section class="coming-soon">
       <img src="coming soon_gold_transparent.png" alt="Alegienne Coming Soon" class="logo">
@@ -135,5 +157,6 @@
       <img src="alegienne_hand_gold_transparent.png" alt="with love from alegienne x" class="signature">
     </section>
   </main>
+  <script src="/nav-assets/nav-shared.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,177 @@
+/* shared "quiet placeholder" page shell — about, apothecary, legal,
+   confirmation. Ivory/dark-plum palette to match florah, the site's
+   current front door. */
+
+:root {
+  --paper: #1a0d0c;
+  --dark-plum: #2d1d19;
+  --ivory-blush: #e8c9b7;
+  --ivory-paper: #eae3d8;
+  --hover-mushroom: #9f9585;
+}
+
+* { box-sizing: border-box; }
+
+html, body { min-height: 100%; margin: 0; }
+
+body {
+  background: var(--ivory-paper);
+  color: var(--dark-plum);
+  font-family: "Courier New", "Noto Serif KR", monospace;
+  overflow-x: hidden;
+}
+
+.page-shell {
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  padding: clamp(96px, 16vw, 140px) clamp(20px, 6vw, 64px) clamp(56px, 9vw, 92px);
+  text-align: center;
+}
+
+.page-inner {
+  display: grid;
+  gap: clamp(14px, 2.8vw, 20px);
+  width: min(100%, 620px);
+}
+
+.page-eyebrow {
+  margin: 0 0 6px;
+  font-size: clamp(11px, 2.6vw, 12px);
+  letter-spacing: 0.18em;
+  opacity: 0.6;
+}
+
+.page-title {
+  margin: 0;
+  font-family: "Cormorant Infant", Georgia, serif;
+  font-size: clamp(26px, 5.4vw, 36px);
+  letter-spacing: 0.04em;
+}
+
+.page-verse {
+  margin: 0;
+  font-size: clamp(13px, 3.2vw, 15px);
+  line-height: 1.75;
+  opacity: 0.92;
+}
+
+.page-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 200px;
+  margin-top: 6px;
+  padding: 13px 28px;
+  border: 1px solid rgba(26, 13, 12, 0.5);
+  border-radius: 999px;
+  color: var(--paper);
+  text-decoration: none;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.page-link:hover, .page-link:focus-visible {
+  background: var(--paper);
+  color: var(--ivory-blush);
+}
+
+/* legal pages */
+.legal { text-align: left; }
+.legal h1 { text-align: center; font-family: "Cormorant Infant", Georgia, serif; font-size: clamp(24px, 5vw, 32px); margin: 0 0 4px; }
+.legal .updated { text-align: center; font-size: 11px; opacity: 0.6; margin-bottom: 30px; }
+.legal h2 { font-size: 12px; letter-spacing: 0.1em; margin: 26px 0 8px; opacity: 0.9; text-transform: lowercase; }
+.legal p, .legal li { font-size: 13px; line-height: 1.75; opacity: 0.88; }
+.legal ul { padding-left: 18px; margin: 6px 0; }
+.legal a { color: var(--paper); text-decoration: underline; }
+
+/* subscribe form, embedded in about / confirmation pages */
+.subscribe {
+  margin-top: clamp(20px, 4vw, 30px);
+  padding-top: clamp(20px, 4vw, 30px);
+  border-top: 1px solid rgba(26, 13, 12, 0.18);
+  display: grid;
+  gap: 12px;
+  text-align: left;
+}
+
+.subscribe-title {
+  margin: 0;
+  text-align: center;
+  font-size: clamp(15px, 3.4vw, 17px);
+  letter-spacing: 0.06em;
+}
+
+.subscribe-copy {
+  margin: 0;
+  text-align: center;
+  font-size: 12.5px;
+  line-height: 1.7;
+  opacity: 0.85;
+}
+
+.subscribe-field {
+  padding: 12px 16px;
+  border: 1px solid rgba(26, 13, 12, 0.35);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.4);
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--dark-plum);
+}
+
+.subscribe-field:focus-visible { outline: 1px solid var(--paper); }
+
+.subscribe-checks {
+  display: grid;
+  gap: 8px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  padding: 4px 6px;
+}
+
+.subscribe-checks label {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.subscribe-checks input { margin-top: 2px; flex-shrink: 0; }
+
+.subscribe-submit {
+  justify-self: center;
+  margin-top: 4px;
+  padding: 12px 32px;
+  border: 1px solid rgba(26, 13, 12, 0.5);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--paper);
+  font-family: inherit;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.subscribe-submit:hover, .subscribe-submit:focus-visible {
+  background: var(--paper);
+  color: var(--ivory-blush);
+}
+
+.subscribe-status {
+  text-align: center;
+  font-size: 12px;
+  min-height: 16px;
+  opacity: 0.85;
+}
+
+.footer-credit {
+  margin-top: clamp(40px, 8vw, 64px);
+  font-size: 11px;
+  opacity: 0.55;
+  text-align: center;
+}
+
+.footer-credit a { color: inherit; }

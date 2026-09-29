@@ -43,6 +43,7 @@
       })();
     </script>
     <link rel="stylesheet" href="./florah/styles.css?v=2">
+    <link rel="stylesheet" href="/nav-assets/nav-shared.css">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -86,12 +87,24 @@
       <header class="site-menu" aria-label="Primary navigation">
         <div class="menu-bar">
           <a class="menu-alegienne-mark" href="/" aria-label="Alegienne home"></a>
-          <button class="menu-toggle" type="button" aria-label="Open menu">
+          <button class="menu-toggle" type="button" aria-label="Open menu" data-aleg-menu-open aria-expanded="false">
             <span></span>
             <span></span>
           </button>
         </div>
       </header>
+
+  <div class="aleg-panel" data-aleg-panel aria-hidden="true">
+    <button type="button" class="aleg-panel-close" data-aleg-menu-close aria-label="Close menu">
+      <span></span><span></span>
+    </button>
+    <nav class="aleg-panel-nav" aria-label="Alegienne menu">
+      <a href="/about/">about</a>
+      <a href="/apothecary/">apothecary</a>
+      <a href="/florah" aria-current="page" class="aleg-current">florah &middot; floral design studio</a>
+    </nav>
+  </div>
+
 
       <section class="brand-stage" aria-label="Florah by Alegienne opening mark">
         <img
@@ -241,5 +254,6 @@
         });
       })();
     </script>
-  </body>
+    <script src="/nav-assets/nav-shared.js" defer></script>
+</body>
 </html>

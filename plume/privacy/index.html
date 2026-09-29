@@ -10,7 +10,8 @@
   <link rel="canonical" href="https://alegienne.com.au/plume/privacy/">
 
   <link rel="icon" type="image/png" href="/Alegienne-favicon.png">
-  <link rel="stylesheet" href="/plume-assets/plume-shared.css?v=21">
+  <link rel="stylesheet" href="/plume-assets/plume-shared.css?v=22">
+  <link rel="stylesheet" href="/nav-assets/nav-shared.css">
 
   <style>
     .legal { max-width: 620px; margin: 0 auto; text-align: left; }
@@ -24,6 +25,22 @@
 </head>
 
 <body>
+
+  <button type="button" class="aleg-menu-btn plume-nav-open" data-aleg-menu-open aria-expanded="false" aria-label="Open menu">
+    <span></span><span></span>
+  </button>
+
+  <div class="aleg-panel" data-aleg-panel aria-hidden="true">
+    <button type="button" class="aleg-panel-close" data-aleg-menu-close aria-label="Close menu">
+      <span></span><span></span>
+    </button>
+    <nav class="aleg-panel-nav" aria-label="Alegienne menu">
+      <a href="/about/">about</a>
+      <a href="/apothecary/">apothecary</a>
+      <a href="/florah">florah &middot; floral design studio</a>
+    </nav>
+  </div>
+
 
   <div class="texture-bg" aria-hidden="true"></div>
   <div class="bg-tint" aria-hidden="true" style="animation: tint-rise 1.6s ease 0.1s both;"></div>
@@ -73,5 +90,6 @@
     <p class="footer-credit"><a href="https://studiorjl.com" target="_blank" rel="noopener">site by studio rjl</a></p>
   </footer>
 
+  <script src="/nav-assets/nav-shared.js" defer></script>
 </body>
 </html>
