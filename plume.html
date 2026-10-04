@@ -15,7 +15,7 @@
   <link rel="icon" type="image/png" href="/Alegienne-favicon.png">
 
   <!-- shared plume style guide — see /plume-assets/plume-shared.css -->
-  <link rel="stylesheet" href="/plume-assets/plume-shared.css?v=23">
+  <link rel="stylesheet" href="/plume-assets/plume-shared.css?v=24">
   <link rel="stylesheet" href="/nav-assets/nav-shared.css">
 
   <script type="application/ld+json">
@@ -54,7 +54,10 @@
 
   <!-- the smoke, for the whole scroll (landing page only — the
        botanical/batch pages use a still textured background instead) -->
-  <video class="video-bg" autoplay muted loop playsinline disablepictureinpicture
+  <!-- no autoplay: the smoke stays parked on its first frame while the
+       logo opens and the welcome types — PlumeUI starts it from the very
+       beginning at the moment the fade-in begins -->
+  <video class="video-bg" muted loop playsinline disablepictureinpicture
          poster="/plume-assets/plume-bg-poster.jpg" aria-hidden="true">
     <source src="/plume-assets/plume-smoke-bg-pingpong.webm" type="video/webm">
     <source src="/plume-assets/plume-smoke-bg-pingpong.mp4" type="video/mp4">
@@ -146,7 +149,7 @@
     </style>
   </noscript>
 
-  <script src="/plume-assets/plume-shared.js?v=23"></script>
+  <script src="/plume-assets/plume-shared.js?v=24"></script>
   <script>PlumeUI.init();</script>
   <script src="/nav-assets/nav-shared.js" defer></script>
 </body>

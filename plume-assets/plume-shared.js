@@ -55,6 +55,20 @@
     rescueAutoplay();
   }
 
+  /* the smoke begins rising at .smoke-on — and it plays from the very
+     start: the video stays parked on its first frame until now, so the
+     first thing you ever see of it is its true opening */
+  function raiseSmoke() {
+    document.documentElement.classList.add('smoke-on');
+    var vids = document.querySelectorAll('.video-bg');
+    Array.prototype.forEach.call(vids, function (v) {
+      v.autoplay = true;      /* the toggle + rescue treat it as live from here */
+      try { v.currentTime = 0; } catch (e) { /* poster-only browsers */ }
+      var pr = v.play();
+      if (pr && typeof pr.catch === 'function') pr.catch(function () {});
+    });
+  }
+
   function typeText(el, cursorEl, text, speed, done) {
     el.textContent = '';
     var i = 0;
@@ -69,9 +83,7 @@
           cursorEl.classList.add('done');
           /* the sequence: logo opens → welcome types → a beat of
              still, flat burgundy → the smoke begins to rise */
-          setTimeout(function () {
-            document.documentElement.classList.add('smoke-on');
-          }, 800);
+          setTimeout(raiseSmoke, 800);
           done && done();
         }, 420);
       }
@@ -123,9 +135,7 @@
     if (reduce || !typeEl || !cursor) {
       /* no typing happens — raise the smoke on the same ~800ms beat
          (reduced-motion users see animations disabled by CSS anyway) */
-      setTimeout(function () {
-        document.documentElement.classList.add('smoke-on');
-      }, 800);
+      setTimeout(raiseSmoke, 800);
       reveal(); return;
     }
     typeEl.textContent = '';
