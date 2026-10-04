@@ -67,6 +67,11 @@
         setTimeout(function () {
           cursorEl.classList.remove('live');
           cursorEl.classList.add('done');
+          /* the sequence: logo opens → welcome types → a beat of
+             still, flat burgundy → the smoke begins to rise */
+          setTimeout(function () {
+            document.documentElement.classList.add('smoke-on');
+          }, 800);
           done && done();
         }, 420);
       }
@@ -115,7 +120,14 @@
       opts.onReady && opts.onReady();
     }
 
-    if (reduce || !typeEl || !cursor) { reveal(); return; }
+    if (reduce || !typeEl || !cursor) {
+      /* no typing happens — raise the smoke on the same ~800ms beat
+         (reduced-motion users see animations disabled by CSS anyway) */
+      setTimeout(function () {
+        document.documentElement.classList.add('smoke-on');
+      }, 800);
+      reveal(); return;
+    }
     typeEl.textContent = '';
     setTimeout(function () { typeText(typeEl, cursor, full, speed, reveal); }, startDelay);
   }

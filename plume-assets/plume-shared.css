@@ -66,13 +66,17 @@ body {
   background: var(--burgundy);
   opacity: 0;
   transform: translateY(16vh);
-  animation: smoke-rise 2.4s cubic-bezier(0.16, 1, 0.3, 1) 2.35s both;
   will-change: transform, opacity;
 }
 
-/* the plume opens on still, flat burgundy — then the smoke
-   rises up from the bottom of the screen to meet it, just as
-   the welcome begins to type */
+/* the plume opens on still, flat burgundy — the smoke waits
+   for the welcome to finish typing, then rises up from the
+   bottom of the screen ~800ms later (PlumeUI adds .smoke-on
+   to <html>; batch/privacy pages use inline tint animations,
+   which keep working regardless) */
+.smoke-on .video-bg {
+  animation: smoke-rise 2.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
 @keyframes smoke-rise {
   from { opacity: 0; transform: translateY(16vh); }
   to   { opacity: 1; transform: none; }
@@ -84,8 +88,11 @@ body {
   z-index: -1;
   background: var(--burgundy);
   opacity: 0;
-  animation: tint-rise 2.4s ease 2.35s both;
   pointer-events: none;
+}
+
+.smoke-on .bg-tint {
+  animation: tint-rise 2.4s ease both;
 }
 
 @keyframes tint-rise {
