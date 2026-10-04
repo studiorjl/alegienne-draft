@@ -80,7 +80,9 @@
   <div class="container">
 
     <!-- 2. The welcome, typed -->
-    <h1 aria-label="why, hello there gorgeous"><span class="type" aria-hidden="true">why, hello there gorgeous</span><span class="cursor" aria-hidden="true"></span></h1>
+    <!-- two line breaks of breathing room below the plume logo —
+         page-scoped so the batch/privacy headers keep their own spacing -->
+    <h1 aria-label="why, hello there gorgeous" style="margin-top: 66px;"><span class="type" aria-hidden="true">why, hello there gorgeous</span><span class="cursor" aria-hidden="true"></span></h1>
 
     <!-- 3. The buttons -->
     <div class="actions">
@@ -150,7 +152,8 @@
   </noscript>
 
   <script src="/plume-assets/plume-shared.js?v=24"></script>
-  <script>PlumeUI.init();</script>
+  <!-- speed 46ms: the welcome types a touch slower than the default 38ms -->
+  <script>PlumeUI.init({ speed: 46 });</script>
   <script src="/nav-assets/nav-shared.js" defer></script>
 </body>
 </html>
