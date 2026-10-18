@@ -6,7 +6,7 @@
   <title>plume · batch no. 01 — alegienne</title>
   <meta name="description" content="plume, batch no. 01. plume, batch no. 01 — this blend is for bliss. damiana, mugwort, mullein, spearmint, rose, chamomile, blue lotus, blue butterfly pea blossom, marshmallow root, vanilla, magic, & love.">
   <meta name="theme-color" content="#1f0a04">
-  <meta name="robots" content="noindex, follow">
+  <meta name="robots" content="noindex, follow, noai, noimageai">
   <meta property="og:title" content="plume · batch no. 01 — alegienne">
   <meta property="og:description" content="this batch's botanicals, hand blended by alegienne from the forest apothecary.">
   <meta property="og:image" content="https://alegienne.com.au/plume-assets/plume-bg-poster.jpg">
@@ -29,6 +29,23 @@
     .divider { width: 200px; }
     /* a line break between "x." and the gold signature */
     .signature { margin-top: 40px; }
+  </style>
+
+  <!-- alegienne cursor: a little dark maroon circle, in the manner of studio rjl -->
+  <style>
+    * { cursor: none !important; }
+    .alegienne-cursor {
+      position: fixed; top: 0; left: 0; z-index: 10000;
+      width: 13px; height: 13px; border-radius: 50%;
+      background: #300505; opacity: 0; pointer-events: none;
+      transform: translate(-50%, -50%);
+      will-change: left, top, transform;
+      transition: background 0.18s ease, opacity 0.18s ease, transform 0.18s ease;
+    }
+    .alegienne-cursor.visible { opacity: 1; }
+    .alegienne-cursor.link-hover { background: #b8904e; transform: translate(-50%, -50%) scale(1.18); }
+    .alegienne-cursor.on-dark { background: #f8f4ef; }
+    .alegienne-cursor.on-dark.link-hover { background: #d6a9a0; }
   </style>
 </head>
 
@@ -155,5 +172,43 @@
   <script src="/plume-assets/plume-shared.js?v=24"></script>
   <script>PlumeUI.init();</script>
   <script src="/nav-assets/nav-shared.js" defer></script>
+
+  <div class="alegienne-cursor" aria-hidden="true"></div>
+  <script>
+    (function () {
+      var cursor = document.querySelector(".alegienne-cursor");
+      if (!cursor) return;
+
+      // no right-click anywhere on alegienne
+      document.addEventListener("contextmenu", function (event) { event.preventDefault(); });
+
+      document.addEventListener("mousemove", function (event) {
+        cursor.style.left = event.clientX + "px";
+        cursor.style.top = event.clientY + "px";
+        cursor.classList.add("visible");
+      });
+      document.addEventListener("mouseleave", function () { cursor.classList.remove("visible"); });
+
+      document.addEventListener("mouseover", function (event) {
+        var target = event.target;
+        var hoverables = 'a, button, [role="button"], input, textarea, select, label, summary';
+        cursor.classList.toggle("link-hover", !!(target.closest && target.closest(hoverables)));
+        var node = target, dark = false, steps = 0;
+        while (node && steps < 8) {
+          var bg = window.getComputedStyle(node).backgroundColor;
+          if (bg && bg !== "rgba(0, 0, 0, 0)" && bg !== "transparent") {
+            var m = bg.match(/\d+/g);
+            if (m) {
+              var lum = (0.299 * +m[0]) + (0.587 * +m[1]) + (0.114 * +m[2]);
+              dark = lum < 96;
+            }
+            break;
+          }
+          node = node.parentElement; steps++;
+        }
+        cursor.classList.toggle("on-dark", dark);
+      });
+    })();
+  </script>
 </body>
 </html>

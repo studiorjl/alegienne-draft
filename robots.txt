@@ -1,0 +1,45 @@
+# alegienne crawler policy
+# search + AI discovery welcome, AI training is not authorised
+# enquiries: orders@alegienne.com.au
+
+User-agent: *
+Allow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: ImagesiftBot
+Disallow: /
+
+User-agent: omgilibot
+Disallow: /
+
+User-agent: YouBot
+Disallow: /
