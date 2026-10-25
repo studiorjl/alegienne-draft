@@ -2,195 +2,291 @@
 <html lang="en-AU">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>ALEGIENNE | Coming soon</title>
+  <meta name="description" content="Alegienne, a brand dedicated to creating heartfelt artefacts and tea with love. Sign up to receive word when we launch.">
   <meta name="robots" content="index, follow, max-image-preview:large, noai, noimageai">
-  <meta name="description" content="Alegienne, a brand dedicated to creating heartfelt artefacts and tea with love. Online soon xo">
-  <meta property="og:title" content="ALEGIENNE | Coming soon">
-  <meta property="og:description" content="Discover Alegienne, a brand dedicated to creating heartfelt products with love.">
+  <meta name="theme-color" content="#2d0c09">
+  <meta property="og:title" content="Alegienne | Coming soon">
+  <meta property="og:description" content="Alegienne, a brand dedicated to creating heartfelt artefacts and tea with love. Sign up to receive word when we launch.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="alegienne_gold.png">
-
+  <meta property="og:url" content="https://www.alegienne.com.au/">
+  <meta property="og:site_name" content="Alegienne">
+  <link rel="canonical" href="https://www.alegienne.com.au/">
   <link rel="icon" type="image/png" href="Alegienne-favicon.png">
+  <link rel="preload" as="image" href="coming-soon-gold.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap">
-
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Mono:ital,wght@0,400;0,700;1,400&display=swap">
   <style>
     :root {
-      --ink: #2a211b;
-      --muted: #806f61;
-      --paper: #f8f4ef;
-      --cream: #fffaf3;
-      --rose: #d6a9a0;
-      --gold: #b8904e;
-      --shadow: 0 26px 80px rgba(65, 46, 30, 0.14);
+      --maroon: #2d0c09;
+      --blush: #d2b2a6;
+      --paper: #e7dcd0;
+      --sage: #8e7b58;
+      --blush-cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='22' height='22'><circle cx='11' cy='11' r='7' fill='%23d2b2a6' stroke='%232d0c09' stroke-width='1.5'/></svg>") 11 11, auto;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; cursor: var(--blush-cursor); }
 
-    html {
-      min-height: 100%;
-      scroll-behavior: smooth;
-    }
+    html { min-height: 100%; scroll-behavior: smooth; }
 
     body {
       margin: 0;
       min-height: 100vh;
-      color: var(--ink);
-
-      background:
-        radial-gradient(circle at 15% 20%, rgba(214, 169, 160, 0.2), transparent 34rem),
-        linear-gradient(145deg, #fffaf3 0%, #f6efe6 48%, #fffdf8 100%);
-      font-family: "Libre Baskerville", Georgia, serif;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: var(--maroon);
+      background-image:
+        radial-gradient(ellipse at 50% 30%, rgba(45, 12, 9, 0.18), rgba(45, 12, 9, 0.62) 78%),
+        url("./plume-assets/plume-texture-bg.jpg");
+      background-size: cover, cover;
+      background-position: center, center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: var(--blush);
+      font-family: "PT Mono", Georgia, serif;
+      -webkit-font-smoothing: antialiased;
     }
 
-    img {
-      display: block;
-      max-width: 100%;
-      height: auto;
-    }
-
-    .page {
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: clamp(88px, 14vw, 120px) clamp(18px, 5vw, 64px) clamp(28px, 6vw, 80px);
-    }
-
-    .coming-soon {
-      width: min(100%, 920px);
+    main {
+      width: min(100%, 1000px);
+      flex: 1;
+      padding: clamp(40px, 8vh, 88px) clamp(20px, 6vw, 64px) clamp(24px, 4vh, 48px);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: clamp(18px, 3vw, 34px);
       text-align: center;
     }
 
-    .logo {
-      width: auto;
-      max-width: min(86vw, 620px);
-      max-height: 33vh;
-      object-fit: contain;
-      filter: drop-shadow(0 18px 42px rgba(65, 46, 30, 0.1));
+    .wordmark {
+      width: 136.39px;
+      height: auto;
+      display: block;
+      margin-bottom: clamp(28px, 5vh, 52px);
+      filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.35));
     }
 
-    .divider {
-      width: clamp(72px, 14vw, 140px);
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(184, 144, 78, 0.85), transparent);
+    .coming-soon {
+      width: 50%;
+      max-width: 520px;
+      height: auto;
+      display: block;
     }
 
-    .tagline {
-      margin: 0;
-      color: var(--muted);
-      font-family: "Courier New", Courier, monospace;
-      font-size: clamp(0.82rem, 2.2vw, 1rem);
-      line-height: 1.8;
-      letter-spacing: 0.05em;
+    .signup-copy {
+      margin: clamp(18px, 3vh, 28px) 0 clamp(18px, 3vh, 28px);
+      font-size: clamp(0.6rem, 1.56vw, 0.69rem);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      line-height: 1.7;
+    }
+
+    .email-form { width: 49%; margin: 0 auto; }
+
+    .input-group {
+      display: flex;
+      align-items: stretch;
+      background: var(--paper);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 18px 52px rgba(0, 0, 0, 0.35);
+    }
+
+    .email-input {
+      flex: 1 1 auto;
+      min-width: 0;
+      border: 0;
+      background: transparent;
+      color: var(--maroon);
+      font: inherit;
+      font-size: 0.784rem;
+      padding: clamp(11.2px, 1.76vw, 13.6px) clamp(12.8px, 1.92vw, 16px);
+      outline: none;
+    }
+
+    .email-input::placeholder { color: rgba(45, 12, 9, 0.55); }
+
+    .submit-btn {
+      flex: 0 0 auto;
+      border: 0;
+      background: var(--blush);
+      color: var(--maroon);
+      font: inherit;
+      font-size: 0.784rem;
+      font-style: italic;
+      padding: clamp(11.2px, 1.76vw, 13.6px) clamp(14.4px, 2.08vw, 19.2px);
+      cursor: var(--blush-cursor);
+      white-space: nowrap;
+      transition: opacity 0.2s ease;
+    }
+
+    .submit-btn:hover { background: var(--sage); }
+    .submit-btn:disabled { opacity: 0.45; }
+
+    .form-status {
+      margin: 14px 0 0;
+      min-height: 1.4em;
+      font-size: 0.552rem;
+      font-style: italic;
+      letter-spacing: 0.02em;
+      opacity: 0.92;
+    }
+
+    .roses {
+      width: 35%;
+      max-width: 480px;
+      height: auto;
+      display: block;
+      margin-top: clamp(28px, 5vh, 56px);
     }
 
     .signature {
-      width: min(60vw, 490px);
-      max-height: 20vh;
-      object-fit: contain;
-      opacity: 0.94;
+      width: 34%;
+      max-width: 320px;
+      height: auto;
+      display: block;
+      margin-top: clamp(16px, 3vh, 30px);
     }
 
-    @media (max-width: 640px) {
-      .page {
-        align-items: start;
-        padding-top: clamp(52px, 12vh, 92px);
-      }
-
-      .logo {
-        max-width: 88vw;
-        max-height: 50vh;
-      }
-
-      .signature {
-        width: min(90vw, 310px);
-        max-height: 36vh;
-      }
+    footer {
+      width: 100%;
+      padding: 12px 20px 16px;
+      text-align: center;
+      font-size: 0.48rem;
+      letter-spacing: 0.06em;
+      color: rgba(235, 214, 206, 0.72);
+      background: rgba(45, 12, 9, 0.55);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
     }
 
-    @media (min-width: 1100px) {
-      .coming-soon {
-        gap: 34px;
-      }
+    /* each element arrives */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: none; }
+    }
+    .fade-in { animation: fadeUp 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+    main > :nth-child(1) { animation-delay: 0.05s; }
+    main > :nth-child(2) { animation-delay: 0.25s; }
+    .signup-copy.typing::after {
+      content: "|";
+      margin-left: 1px;
+      animation: blink 1s steps(1, end) infinite;
+    }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+    /* the line types itself, then the rest of the page arrives */
+    html.js .email-form, html.js .roses, html.js .signature, html.js footer { opacity: 0; }
+    html.js.typed .email-form { animation: fadeUp 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+    html.js.typed .roses { animation: fadeUp 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.2s both; }
+    html.js.typed .signature { animation: fadeUp 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.4s both; }
+    html.js.typed footer { animation: fadeUp 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.55s both; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in, footer { animation: none; }
+      html.js .email-form, html.js .roses, html.js .signature, html.js footer { opacity: 1; }
+      .signup-copy.typing::after { content: none; }
+    }
+
+    /* mobile, per the shopify settings */
+    @media (max-width: 749px) {
+      .wordmark { width: 30%; max-width: 220px; margin-bottom: clamp(24px, 5vh, 44px); }
+      .coming-soon { width: 82%; }
+      .email-form { width: 86%; }
+      .roses { width: 84%; }
+      .signature { width: 55%; }
     }
   </style>
-
-  <!-- alegienne cursor: a little dark maroon circle, in the manner of studio rjl -->
-  <style>
-    * { cursor: none !important; }
-    .alegienne-cursor {
-      position: fixed; top: 0; left: 0; z-index: 10000;
-      width: 13px; height: 13px; border-radius: 50%;
-      background: #300505; opacity: 0; pointer-events: none;
-      transform: translate(-50%, -50%);
-      will-change: left, top, transform;
-      transition: background 0.18s ease, opacity 0.18s ease, transform 0.18s ease;
-    }
-    .alegienne-cursor.visible { opacity: 1; }
-    .alegienne-cursor.link-hover { background: #b8904e; transform: translate(-50%, -50%) scale(1.18); }
-    .alegienne-cursor.on-dark { background: #f8f4ef; }
-    .alegienne-cursor.on-dark.link-hover { background: #d6a9a0; }
-  </style>
+  <script>document.documentElement.classList.add("js");</script>
 </head>
-
 <body>
-  <main class="page" aria-label="Alegienne coming soon">
-    <section class="coming-soon">
-      <img src="coming soon_gold_transparent.png" alt="Alegienne Coming Soon" class="logo">
-
-      <div class="divider" aria-hidden="true"></div>
-
-      <p class="tagline">with love, from alegienne.</p>
-
-      <img src="alegienne_hand_gold_transparent.png" alt="with love from alegienne x" class="signature">
-    </section>
+  <main>
+    <img class="wordmark fade-in" src="alegienne-wordmark-gold.webp" alt="Alegienne" width="420" height="148" decoding="async">
+    <img class="coming-soon fade-in" src="coming-soon-gold.webp" alt="coming soon" width="1000" height="602" decoding="async" fetchpriority="high">
+    <p class="signup-copy">sign up to receive word when we launch x</p>
+    <form class="email-form" data-subscribe-form>
+      <div class="input-group">
+        <label for="email" style="position:absolute;left:-9999px;">Email</label>
+        <input class="email-input" id="email" name="email" type="email" placeholder="Email address" autocomplete="email" autocapitalize="off" autocorrect="off" required>
+        <button class="submit-btn" type="submit" data-subscribe-submit>yes please.</button>
+      </div>
+      <p class="form-status" data-subscribe-status role="status" aria-live="polite"></p>
+    </form>
+    <img class="roses" src="alegienne-roses-web.webp" alt="garden roses in a jar, with love" width="680" height="1024" decoding="async">
+    <img class="signature" src="alegienne-signature-gold.webp" alt="with love, Alegienne" width="260" height="121" decoding="async">
   </main>
-
-  <div class="alegienne-cursor" aria-hidden="true"></div>
+  <footer>&copy; always, Alegienne.</footer>
   <script>
-    (function () {
-      var cursor = document.querySelector(".alegienne-cursor");
-      if (!cursor) return;
-
-      // no right-click anywhere on alegienne
-      document.addEventListener("contextmenu", function (event) { event.preventDefault(); });
-
-      document.addEventListener("mousemove", function (event) {
-        cursor.style.left = event.clientX + "px";
-        cursor.style.top = event.clientY + "px";
-        cursor.classList.add("visible");
-      });
-      document.addEventListener("mouseleave", function () { cursor.classList.remove("visible"); });
-
-      document.addEventListener("mouseover", function (event) {
-        var target = event.target;
-        var hoverables = 'a, button, [role="button"], input, textarea, select, label, summary';
-        cursor.classList.toggle("link-hover", !!(target.closest && target.closest(hoverables)));
-        var node = target, dark = false, steps = 0;
-        while (node && steps < 8) {
-          var bg = window.getComputedStyle(node).backgroundColor;
-          if (bg && bg !== "rgba(0, 0, 0, 0)" && bg !== "transparent") {
-            var m = bg.match(/\d+/g);
-            if (m) {
-              var lum = (0.299 * +m[0]) + (0.587 * +m[1]) + (0.114 * +m[2]);
-              dark = lum < 96;
-            }
-            break;
+    (() => {
+      // the sign-up line arrives letter by letter, then the page follows
+      const copyEl = document.querySelector(".signup-copy");
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (copyEl && !reduced) {
+        const text = copyEl.textContent;
+        copyEl.textContent = "";
+        copyEl.classList.add("typing");
+        let i = 0;
+        window.setTimeout(function step() {
+          i += 1;
+          copyEl.textContent = text.slice(0, i);
+          if (i < text.length) {
+            window.setTimeout(step, 42);
+          } else {
+            copyEl.classList.remove("typing");
+            document.documentElement.classList.add("typed");
           }
-          node = node.parentElement; steps++;
+        }, 500);
+      } else if (copyEl) {
+        document.documentElement.classList.add("typed");
+      }
+
+      const form = document.querySelector("[data-subscribe-form]");
+      if (!form) return;
+      const status = form.querySelector("[data-subscribe-status]");
+      const endpoint = "https://rjl-publisher-insights-agent-a07f3048.base44.app/functions/subscribeAlegienne?format=json";
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const email = form.querySelector('[name="email"]').value.trim();
+        const submitBtn = form.querySelector("[data-subscribe-submit]");
+
+        if (!email) {
+          status.textContent = "please add your email.";
+          return;
         }
-        cursor.classList.toggle("on-dark", dark);
+
+        status.textContent = "sending…";
+        if (submitBtn) submitBtn.disabled = true;
+
+        try {
+          const res = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, launch: true }),
+          });
+          if (!res.ok) throw new Error("failed");
+          const data = await res.json().catch(() => ({}));
+          status.textContent = data.duplicated
+            ? "you're already on the list — see you at the launch, x"
+            : "you're in — welcome to the list, x";
+          form.reset();
+        } catch (error) {
+          status.textContent = "something went sideways — try again, or write to info@alegienne.com.au";
+        } finally {
+          if (submitBtn) submitBtn.disabled = false;
+        }
       });
     })();
+
+    // no right click, and no dragging the images
+    document.addEventListener("contextmenu", (event) => event.preventDefault());
+    document.addEventListener("dragstart", (event) => {
+      if (event.target.tagName === "IMG") event.preventDefault();
+    });
   </script>
 </body>
 </html>
