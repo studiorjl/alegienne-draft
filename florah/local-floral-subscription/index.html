@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>first bloom ~ a local floral subscription from florah</title>
+<meta name="description" content="first bloom — florah by Alegienne. a seasonal floral bouquet and a signature herbal loose leaf tea, handcrafted with love for near and dear ones.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="stylesheet" href="../styles.css?v=6">
+<style>
+  :root{
+    --plum:#1a0d0c;
+    --ink:#2d1d19;
+    --ivory:#eae3d8;
+    --ivory-deep:#e0d7c6;      /* the slightly darker ivory for the fields */
+    --blush:#e8c9b7;
+    --muted:#8a7f70;
+  }
+
+  html,body{min-height:100%;}
+  body{
+    margin:0;
+    background-color:var(--plum);
+    background-image:
+      linear-gradient(rgba(26,13,12,.14),rgba(26,13,12,.36)),
+      url("../assets/florah-dark-plum-background-texture.webp");
+    background-position:center;
+    background-size:cover;
+    background-attachment:fixed;
+    color:var(--ink);
+    font-family:"Courier New",Courier,monospace;
+    padding:clamp(20px,4vw,60px) clamp(14px,3vw,32px);
+  }
+
+  /* the sheet of paper, sitting over the plum */
+  .order-wrap{
+    width:min(100%,660px);
+    margin:0 auto;
+    background:var(--ivory);
+    border-radius:14px;
+    box-shadow:0 18px 48px rgba(10,4,4,.34);
+    padding:clamp(28px,5.5vw,58px) clamp(20px,5vw,52px) clamp(34px,6vw,64px);
+  }
+
+  .order-head{text-align:center;margin-bottom:clamp(24px,4.5vw,42px);}
+  .order-head img{width:min(52vw,240px);height:auto;display:block;margin:0 auto clamp(18px,3vw,26px);}
+  .order-head h1{
+    font-family:"Times New Roman",serif;font-style:italic;font-weight:400;
+    font-size:clamp(20px,4.4vw,28px);margin:0 0 10px;letter-spacing:.01em;color:var(--ink);
+  }
+  .order-head p{font-size:clamp(11px,2.4vw,12.5px);line-height:1.95;margin:0;color:rgba(45,29,25,.72);}
+
+  .order-field{display:grid;gap:7px;margin-bottom:clamp(12px,2.2vw,17px);}
+  .order-field label,.order-choice legend{
+    font-size:10.5px;letter-spacing:.16em;text-transform:lowercase;color:rgba(45,29,25,.72);
+  }
+  .order-field label span{letter-spacing:.04em;color:rgba(45,29,25,.5);}
+
+  .order-field input,
+  .order-field textarea,
+  .order-field select{
+    width:100%;
+    padding:11px 13px;
+    border:1px solid rgba(45,29,25,.14);
+    border-radius:7px;
+    background:var(--ivory-deep);
+    color:var(--ink);
+    font-family:inherit;
+    font-size:clamp(12.5px,3vw,13.5px);
+    line-height:1.6;
+    appearance:none;
+    transition:border-color .25s ease,background-color .25s ease;
+  }
+  .order-field textarea{resize:vertical;}
+  .order-field select{cursor:pointer;}
+  .order-field select option{color:var(--ink);background:var(--ivory);}
+  .order-field input:focus,
+  .order-field textarea:focus,
+  .order-field select:focus{
+    outline:none;
+    border-color:rgba(45,29,25,.5);
+    background:#e6ddcd;
+  }
+  ::placeholder{color:rgba(45,29,25,.4);}
+
+  .order-choice{display:flex;flex-wrap:wrap;gap:10px 22px;margin:0 0 clamp(14px,2.6vw,20px);padding:0;border:0;color:var(--ink);}
+  .order-choice legend{width:100%;margin-bottom:4px;padding:0;}
+  .order-choice label{display:inline-flex;align-items:center;gap:8px;font-size:clamp(12px,2.9vw,13.5px);color:var(--ink);cursor:pointer;}
+  .order-choice input[type="radio"]{
+    appearance:none;width:12px;height:12px;margin:0;border:1px solid rgba(45,29,25,.5);
+    border-radius:50%;background:transparent;cursor:pointer;transition:background-color .2s ease;
+  }
+  .order-choice input[type="radio"]:checked{background:var(--ink);border-color:var(--ink);}
+
+  .order-button{
+    appearance:none;width:100%;margin-top:6px;
+    border:1px solid var(--ink);border-radius:7px;
+    background:var(--ink);color:var(--ivory);
+    font-family:inherit;font-size:11px;letter-spacing:.16em;
+    padding:16px 26px;cursor:pointer;
+    transition:background-color .28s ease,border-color .28s ease;
+  }
+  .order-button:hover{background:var(--plum);border-color:var(--plum);}
+  .order-button[disabled]{opacity:.45;cursor:default;}
+
+  .order-note{font-size:11px;line-height:1.9;margin:14px 0 0;color:rgba(45,29,25,.7);}
+
+  .pay-block{margin-top:26px;padding-top:22px;border-top:1px solid rgba(45,29,25,.16);}
+  .pay-block h2{font-family:"Times New Roman",serif;font-style:italic;font-weight:400;font-size:19px;margin:0 0 8px;color:var(--ink);}
+  .pay-link{
+    display:block;text-align:center;text-decoration:none;
+    background:var(--ink);color:var(--ivory);
+    font-size:11px;letter-spacing:.16em;padding:16px 22px;margin-top:12px;border-radius:7px;
+  }
+  .pay-link[hidden]{display:none;}
+
+  .honeypot{position:absolute;left:-9999px;}
+  [hidden]{display:none !important;}
+  .back{display:inline-block;margin-top:26px;font-size:10.5px;letter-spacing:.14em;color:rgba(45,29,25,.55);text-decoration:none;}
+  .back:hover{color:var(--ink);}
+</style>
+<body>
+<main class="order-wrap">
+  <header class="order-head">
+    <img src="../assets/florah-wordmark-email.png" alt="florah">
+    <h1>first bloom</h1>
+    <p>an opening offer from florah by Alegienne: a seasonal floral bouquet &amp; a signature herbal loose leaf tea, handcrafted with love for near &amp; dear ones.</p>
+    <p style="margin-top:14px;font-size:clamp(15px,3.4vw,19px);">A$55.</p>
+  </header>
+
+  <form data-florah-order novalidate>
+    <div class="order-field">
+      <label for="florah-name">your name</label>
+      <input id="florah-name" name="name" type="text" autocomplete="name" required>
+    </div>
+    <div class="order-field">
+      <label for="florah-email">email</label>
+      <input id="florah-email" name="email" type="email" autocomplete="email" required>
+    </div>
+    <div class="order-field">
+      <label for="florah-phone">phone <span>so I can reach you on the morning</span></label>
+      <input id="florah-phone" name="phone" type="tel" autocomplete="tel">
+    </div>
+    <fieldset class="order-choice">
+      <legend>delivery or pick up?</legend>
+      <label><input type="radio" name="method" value="delivery" checked> local delivery</label>
+      <label><input type="radio" name="method" value="pickup"> pick up</label>
+    </fieldset>
+    <div class="order-field" data-delivery-only>
+      <label for="florah-address">delivery address</label>
+      <textarea id="florah-address" name="address" rows="2"></textarea>
+    </div>
+    <div class="order-field">
+      <label for="florah-note">a note for your card <span>optional</span></label>
+      <textarea id="florah-note" name="gift_note" rows="2"></textarea>
+    </div>
+    <input class="honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="order-button" type="submit">order first bloom &middot; A$55</button>
+    <p class="order-note" data-status role="status" hidden></p>
+  </form>
+
+  <p class="order-note" data-thanks hidden>your order is in xo a confirmation is on its way to your inbox, with the payment link inside.</p>
+  <p class="order-note">free local pick up, Mullumbimby: Heritage Park West on Brunswick Terrace, just before Federation Bridge, 9am to 9.30am. free local delivery around Mullumbimby, Wilsons Creek &amp; Brunswick Heads; a little further out, A$20.</p>
+  <p class="order-note">questions first? write to <a href="mailto:florah@alegienne.com.au" style="color:inherit;">florah@alegienne.com.au</a>.</p>
+
+  <a class="back" href="../">&larr; back to florah</a>
+</main>
+
+<script>
+  (function () {
+    var form = document.querySelector("[data-florah-order]");
+    if (!form) return;
+    var button = form.querySelector('button[type=submit]');
+    var status = form.querySelector("[data-status]");
+    var thanks = document.querySelector("[data-thanks]");
+    var deliveryOnly = form.querySelector("[data-delivery-only]");
+    var address = form.querySelector("#florah-address");
+
+    function syncMethod() {
+      var picked = form.querySelector('input[name="method"]:checked');
+      var isDelivery = (picked ? picked.value : "delivery") === "delivery";
+      if (deliveryOnly) deliveryOnly.hidden = !isDelivery;
+      if (address) address.required = isDelivery;
+    }
+    form.querySelectorAll('input[name="method"]').forEach(function (el) {
+      el.addEventListener("change", syncMethod);
+    });
+    syncMethod();
+
+    function say(text) {
+      if (!status) return;
+      status.textContent = text || "";
+      status.hidden = !text;
+    }
+
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      var trap = form.querySelector('input[name="website"]');
+      if (trap && trap.value.trim() !== "") { say("thank you xo"); return; }
+      if (!form.reportValidity()) return;
+
+      var data = new FormData(form);
+      var payload = {
+        name: data.get("name"),
+        email: data.get("email"),
+        phone: data.get("phone"),
+        method: data.get("method") === "pickup" ? "pickup" : "delivery",
+        address: data.get("address"),
+        gift_note: data.get("gift_note"),
+        offer: "first bloom",
+        amount: 55
+      };
+      button.disabled = true;
+      say("sending your order...");
+      try {
+        var res = await fetch("https://rjl-publisher-insights-agent-a07f3048.base44.app/functions/florahOrder?format=json", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        var json = await res.json().catch(function () { return {}; });
+        if (!res.ok || !json.ok) throw new Error(json.error || "send failed");
+        form.hidden = true;
+        if (thanks) thanks.hidden = false;
+      } catch (error) {
+        button.disabled = false;
+        say("that did not send. write to florah@alegienne.com.au and I will sort it xo");
+      }
+    });
+  })();
+</script>
+</body>
+</html>
