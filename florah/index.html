@@ -42,7 +42,7 @@
         }
       })();
     </script>
-    <link rel="stylesheet" href="./styles.css?v=2">
+    <link rel="stylesheet" href="./styles.css?v=3">
     <link rel="stylesheet" href="/nav-assets/nav-shared.css">
     <script type="application/ld+json">
       {
@@ -174,8 +174,38 @@
           <p class="landing-verse reveal-on-scroll">one morning only — Friday 2 October.</p>
           <p class="landing-verse reveal-on-scroll">free local pick up, Mullumbimby: Heritage Park West on Brunswick Terrace, just before Federation Bridge, 9am–9.30am.</p>
           <p class="landing-verse reveal-on-scroll">free local delivery around Mullumbimby, Wilsons Creek &amp; Brunswick Heads; a little further out, A$20.</p>
-          <a class="landing-button reveal-on-scroll" href="https://square.link/u/9hPb6c2l" rel="noopener">order first bloom &middot; A$55</a>
-          <p class="landing-verse landing-note reveal-on-scroll">once you've ordered, send your delivery address to <a href="mailto:orders@alegienne.com.au">orders@alegienne.com.au</a> &middot; questions first? write to us there, too.</p>
+          <form class="order-form reveal-on-scroll" data-florah-order aria-label="Order from florah" novalidate>
+            <div class="order-field">
+              <label for="florah-name">your name</label>
+              <input id="florah-name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="order-field">
+              <label for="florah-email">email</label>
+              <input id="florah-email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div class="order-field">
+              <label for="florah-phone">phone <span>so I can reach you on the morning</span></label>
+              <input id="florah-phone" name="phone" type="tel" autocomplete="tel">
+            </div>
+            <fieldset class="order-choice">
+              <legend>delivery or pick up?</legend>
+              <label><input type="radio" name="method" value="delivery" checked> local delivery</label>
+              <label><input type="radio" name="method" value="pickup"> pick up</label>
+            </fieldset>
+            <div class="order-field" data-delivery-only>
+              <label for="florah-address">delivery address</label>
+              <textarea id="florah-address" name="address" rows="2"></textarea>
+            </div>
+            <div class="order-field">
+              <label for="florah-note">a note for your card <span>optional</span></label>
+              <textarea id="florah-note" name="gift_note" rows="2"></textarea>
+            </div>
+            <input class="order-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <button class="landing-button" type="submit">order first bloom &middot; A$55</button>
+            <p class="landing-verse landing-note" data-order-status role="status" hidden></p>
+          </form>
+          <p class="landing-verse landing-note reveal-on-scroll" data-order-thanks hidden>your order is in xo a confirmation is on its way to your inbox, with the payment link inside.</p>
+          <p class="landing-verse landing-note reveal-on-scroll">questions first? write to <a href="mailto:florah@alegienne.com.au">florah@alegienne.com.au</a>.</p>
         </div>
       </section>
 
@@ -307,6 +337,101 @@
           node = node.parentElement; steps++;
         }
         cursor.classList.toggle("on-dark", dark);
+      });
+    })();
+  </script>
+  <script>
+    (() => {
+      const FLORAH = {
+        endpoint: "https://rjl-publisher-insights-agent-a07f3048.base44.app/functions/florahOrder?format=json",
+        offer: "florah first bloom",
+        amount: 55,
+        deliveryDate: ""
+      };
+
+      const form = document.querySelector("[data-florah-order]");
+      if (!form) return;
+
+      const status = form.querySelector("[data-order-status]");
+      const thanks = document.querySelector("[data-order-thanks]");
+      const button = form.querySelector('button[type="submit"]');
+      const label = button.textContent;
+      const deliveryField = form.querySelector("[data-delivery-only]");
+      const address = form.querySelector("#florah-address");
+
+      const syncMethod = () => {
+        const picked = form.querySelector('input[name="method"]:checked');
+        const method = picked ? picked.value : "delivery";
+        const isDelivery = method === "delivery";
+        if (deliveryField) deliveryField.hidden = !isDelivery;
+        if (address) address.required = isDelivery;
+      };
+
+      form.querySelectorAll('input[name="method"]').forEach((input) => {
+        input.addEventListener("change", syncMethod);
+      });
+      syncMethod();
+
+      const say = (message) => {
+        if (!status) return;
+        status.hidden = !message;
+        status.textContent = message || "";
+      };
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const trap = form.querySelector('input[name="website"]');
+        if (trap && trap.value) return;
+
+        const data = new FormData(form);
+        const payload = {
+          name: String(data.get("name") || "").trim(),
+          email: String(data.get("email") || "").trim(),
+          phone: String(data.get("phone") || "").trim(),
+          method: String(data.get("method") || "delivery"),
+          address: String(data.get("address") || "").trim(),
+          gift_note: String(data.get("gift_note") || "").trim(),
+          offer: FLORAH.offer,
+          amount: FLORAH.amount,
+          delivery_date: FLORAH.deliveryDate
+        };
+
+        if (!payload.name || !payload.email) {
+          say("your name and email, please xo");
+          return;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) {
+          say("that email looks a little off, mind checking it?");
+          return;
+        }
+        if (payload.method === "delivery" && payload.address.length < 6) {
+          say("where should the bloom go?");
+          return;
+        }
+
+        say("");
+        button.disabled = true;
+        button.textContent = "sending…";
+
+        try {
+          const res = await fetch(FLORAH.endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
+          const json = await res.json().catch(() => ({}));
+          if (!res.ok || !json.ok) throw new Error(json.error || "send failed");
+          form.hidden = true;
+          if (thanks) {
+            thanks.hidden = false;
+            thanks.classList.add("is-visible");
+          }
+        } catch (error) {
+          button.disabled = false;
+          button.textContent = label;
+          say("that did not send. write to florah@alegienne.com.au and I will sort it xo");
+        }
       });
     })();
   </script>

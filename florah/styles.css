@@ -938,6 +938,130 @@ body.has-custom-cursor .custom-cursor {
   color: inherit;
 }
 
+/* florah order form — written to sit inside the ivory paper */
+.order-form {
+  display: grid;
+  gap: clamp(14px, 3vw, 20px);
+  width: min(100%, 460px);
+  margin: clamp(10px, 2.4vw, 18px) auto 0;
+  text-align: left;
+  justify-items: stretch;
+}
+
+.order-field {
+  display: grid;
+  gap: 6px;
+}
+
+.order-field label,
+.order-choice legend {
+  font-family: "Courier New", "Noto Serif KR", monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  color: var(--dark-plum);
+  opacity: 0.72;
+}
+
+.order-field label span {
+  letter-spacing: 0.04em;
+  opacity: 0.62;
+}
+
+.order-field input,
+.order-field textarea {
+  width: 100%;
+  padding: 8px 2px;
+  border: 0;
+  border-bottom: 1px solid rgba(26, 13, 12, 0.28);
+  border-radius: 0;
+  background: transparent;
+  color: var(--dark-plum);
+  font-family: "Courier New", "Noto Serif KR", monospace;
+  font-size: clamp(12.5px, 3.2vw, 14px);
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  resize: vertical;
+  transition: border-color 0.25s ease;
+}
+
+.order-field input:focus,
+.order-field textarea:focus {
+  outline: none;
+  border-bottom-color: rgba(26, 13, 12, 0.72);
+}
+
+.order-choice {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.order-choice legend {
+  width: 100%;
+  margin-bottom: 2px;
+  padding: 0;
+}
+
+.order-choice label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Courier New", "Noto Serif KR", monospace;
+  font-size: clamp(12px, 3vw, 13.5px);
+  letter-spacing: 0.02em;
+  color: var(--dark-plum);
+  cursor: pointer;
+}
+
+.order-choice input[type="radio"] {
+  appearance: none;
+  width: 11px;
+  height: 11px;
+  margin: 0;
+  border: 1px solid rgba(26, 13, 12, 0.5);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.order-choice input[type="radio"]:checked {
+  background: var(--dark-plum);
+  border-color: var(--dark-plum);
+}
+
+.order-choice input[type="radio"]:focus-visible {
+  outline: 1px solid rgba(26, 13, 12, 0.6);
+  outline-offset: 3px;
+}
+
+.order-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.order-form .landing-button {
+  justify-self: center;
+  width: auto;
+  font-family: "Courier New", "Noto Serif KR", monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+}
+
+.order-form .landing-button[disabled] {
+  opacity: 0.6;
+  cursor: default;
+  transform: none;
+}
+
 /* cascade the landing reveals */
 .landing-inner > :nth-child(1) { --reveal-delay: 0ms; }
 .landing-inner > :nth-child(2) { --reveal-delay: 90ms; }
