@@ -7,27 +7,27 @@
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>order florah for your venue ~ florah by Alegienne</title>
-<meta name="description" content="order a large seasonal floral arrangement for your venue, restaurant, hotel or occasion. delivered, vase included. florah by Alegienne.">
+<title>order florals for your venue ~ florah by Alegienne</title>
+<meta name="description" content="a curated seasonal floral arrangement for your space; venue, restaurant, hotel or occasion. florah by Alegienne is a seasonal floral design studio curating floral art; moody romantic blooms.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="stylesheet" href="../styles.css?v=6">
 <style>
   @font-face {
-    font-family: "PT Sans";
+    font-family: "PT Mono";
     font-style: normal;
     font-weight: 400;
     font-display: swap;
     src: url("../assets/fonts/pt-sans-regular.woff2") format("woff2");
   }
   @font-face {
-    font-family: "PT Sans";
+    font-family: "PT Mono";
     font-style: italic;
     font-weight: 400;
     font-display: swap;
     src: url("../assets/fonts/pt-sans-italic.woff2") format("woff2");
   }
   @font-face {
-    font-family: "PT Sans";
+    font-family: "PT Mono";
     font-style: normal;
     font-weight: 700;
     font-display: swap;
@@ -200,7 +200,7 @@
     </fieldset>
 
     <div class="order-field">
-      <label for="v-business">venue / business / company <span>as it should appear on the invoice</span></label>
+      <label for="v-business">venue / business / company <span></span></label>
       <input id="v-business" name="business" type="text" autocomplete="organization" required>
     </div>
     <div class="order-field">
@@ -212,7 +212,7 @@
       <input id="v-email" name="email" type="email" autocomplete="email" required>
     </div>
     <div class="order-field">
-      <label for="v-phone">phone <span>so I can reach you on the morning</span></label>
+      <label for="v-phone">phone <span></span></label>
       <input id="v-phone" name="phone" type="tel" autocomplete="tel">
     </div>
     <div class="order-field">
@@ -220,7 +220,7 @@
       <textarea id="v-address" name="address" rows="2" required></textarea>
     </div>
     <div class="order-field">
-      <label for="v-access">getting in <span>parking, gates, who to ask for, where to leave it</span></label>
+      <label for="v-access">notes for delivery<span></span></label>
       <textarea id="v-access" name="access_notes" rows="2"></textarea>
     </div>
     <div class="order-field">
@@ -228,23 +228,23 @@
       <select id="v-date" name="delivery_date" required></select>
     </div>
     <div class="order-field">
-      <label for="v-prefs">creative preferences <span>colours, flowers to avoid, the mood of the room, anything at all</span></label>
+      <label for="v-prefs">any notes for us? <span></span></label>
       <textarea id="v-prefs" name="preferences" rows="3"></textarea>
     </div>
     <fieldset class="order-choice">
-      <legend>the creative call</legend>
-      <label><input type="radio" name="call" value="yes" checked> yes please, 15 minutes</label>
-      <label><input type="radio" name="call" value="no"> not this time</label>
+      <legend>creative call?</legend>
+      <label><input type="radio" name="call" value="yes" checked> yes please, book a 15 minute call</label>
+      <label><input type="radio" name="call" value="no"> surprise delight me please x</label>
     </fieldset>
 
     <input class="honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-    <button class="order-button" type="submit">reserve the large &middot; A$350</button>
+    <button class="order-button" type="submit">reserve large bouquet for A$350.00</button>
     <p class="order-note" data-status role="status" hidden></p>
   </form>
 
   <div class="pay-block" data-pay hidden>
-    <h2>one more step</h2>
-    <p class="order-note">your arrangement is reserved. pay below to make it real, and your confirmation and invoice will follow by email.</p>
+    <h2>place order</h2>
+    <p class="order-note">your arrangement is reserved. <br><br>proceed to payment [via square]<br><br>your reciept will follow by email.</p>
     <a class="pay-link" data-pay-large href="https://square.link/u/dxJqZyqc" hidden>pay A$350</a>
     <a class="pay-link" data-pay-xlarge href="https://square.link/u/FnWbD0o9" hidden>pay A$550</a>
   </div>
