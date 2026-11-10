@@ -1115,7 +1115,8 @@ body.has-custom-cursor .custom-cursor {
 
 /* 2 · gold wordmark in the menu */
 .menu-alegienne-mark {
-  background: transparent url("../alegienne-wordmark-gold.webp") center / 100% 100% no-repeat;
+  aspect-ratio: 359 / 52;
+  background: transparent url("./assets/alegienne-wordmark-gold.png") center / contain no-repeat;
   -webkit-mask-image: none;
   mask-image: none;
 }
