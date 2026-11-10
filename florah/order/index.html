@@ -12,6 +12,28 @@
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="stylesheet" href="../styles.css?v=6">
 <style>
+  @font-face {
+    font-family: "PT Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../assets/fonts/pt-sans-regular.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "PT Sans";
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../assets/fonts/pt-sans-italic.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "PT Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("../assets/fonts/pt-sans-bold.woff2") format("woff2");
+  }
+
   :root{
     --plum:#1a0d0c;
     --ink:#2d1d19;
@@ -49,8 +71,8 @@
   .order-head{text-align:center;margin-bottom:clamp(24px,4.5vw,42px);}
   .order-head img{width:min(52vw,240px);height:auto;display:block;margin:0 auto clamp(18px,3vw,26px);}
   .order-head h1{
-    font-family:"Times New Roman",serif;font-style:italic;font-weight:400;
-    font-size:clamp(20px,4.4vw,28px);margin:0 0 10px;letter-spacing:.01em;color:var(--ink);
+    font-family:"PT Sans","Courier New",sans-serif;font-style:normal;font-weight:400;
+    font-size:clamp(19px,4.2vw,26px);margin:0 0 14px;letter-spacing:.01em;color:var(--ink);
   }
   .order-head p{font-size:clamp(11px,2.4vw,12.5px);line-height:1.95;margin:0;color:rgba(45,29,25,.72);}
 
@@ -118,6 +140,40 @@
   }
   .pay-link[hidden]{display:none;}
 
+
+  /* the branded validation pop up */
+  .brand-alert{
+    position:fixed;
+    left:50%;
+    top:clamp(14px,3vw,26px);
+    transform:translate(-50%,-12px);
+    z-index:60;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    max-width:min(92vw,420px);
+    padding:11px 20px;
+    border-radius:999px;
+    background:var(--ink);
+    color:var(--ivory);
+    border:1px solid rgba(234,227,216,.28);
+    box-shadow:0 12px 30px rgba(10,4,4,.45);
+    font-family:"Courier New",Courier,monospace;
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:lowercase;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .28s ease, transform .28s ease;
+  }
+  .brand-alert.is-visible{opacity:1;transform:translate(-50%,0);}
+  .brand-alert[hidden]{display:none;}
+  .field-error input,
+  .field-error textarea,
+  .field-error select{
+    border-color:var(--ink) !important;
+    background:#ddd2bf !important;
+  }
   .honeypot{position:absolute;left:-9999px;}
   [hidden]{display:none !important;}
   .back{display:inline-block;margin-top:26px;font-size:10.5px;letter-spacing:.14em;color:rgba(45,29,25,.55);text-decoration:none;}
@@ -125,11 +181,15 @@
 </style>
 </head>
 <body>
+<div class="brand-alert" data-alert role="alert" hidden></div>
 <main class="order-wrap">
   <header class="order-head">
     <img src="../assets/florah-wordmark-email.png" alt="florah">
     <h1>for venues &amp; occasions</h1>
-    <p>a large seasonal arrangement, made from the market that morning, delivered and set in your space. vase included. every order comes with a complimentary 15 minute creative call, so we can learn your space and your taste before the flowers arrive.</p>
+    <p>a moody seasonal floral arrangement made to flirt with your space.<br>
+    You provide the vase - we arrange and deliver.<br>
+    every order comes with a complimentary 15 minute creative call,<br>
+    sometimes you&#39;ll have some specific colours, flowers and blooms in mind - on this call we can share what&#39;s available and in season and what will suit your space best and make sure your arrangement is curated specifically.</p>
   </header>
 
   <form data-venue-order novalidate>
@@ -250,11 +310,74 @@
       el.addEventListener("change", syncLabel);
     });
 
+
+    var alertBox = document.querySelector("[data-alert]");
+    var alertTimer = null;
+
+    function showAlert(message) {
+      if (!alertBox) return;
+      alertBox.textContent = message;
+      alertBox.hidden = false;
+      requestAnimationFrame(function () { alertBox.classList.add("is-visible"); });
+      clearTimeout(alertTimer);
+      alertTimer = setTimeout(function () {
+        alertBox.classList.remove("is-visible");
+        setTimeout(function () { alertBox.hidden = true; }, 320);
+      }, 4200);
+    }
+
+    function flag(field, message) {
+      form.querySelectorAll(".field-error").forEach(function (el) { el.classList.remove("field-error"); });
+      if (field) {
+        var box = field.closest(".order-field") || field.parentElement;
+        if (box) box.classList.add("field-error");
+        field.focus({ preventScroll: false });
+      }
+      showAlert(message);
+    }
+
+    function visible(el) {
+      return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+    }
+
+    function firstProblem() {
+      var order = ["business", "name", "email", "address", "delivery_date"];
+      var messages = {
+        business: "! please add your venue or business name",
+        name: "! please fill in this field",
+        email: "! please fill in this field",
+        address: "! please fill in this field",
+        delivery_date: "! please choose a delivery day"
+      };
+      for (var i = 0; i < order.length; i++) {
+        var name = order[i];
+        var field = form.querySelector('[name="' + name + '"]');
+        if (!field || !visible(field)) continue;
+        var value = (field.value || "").trim();
+        if (!value) return { field: field, message: messages[name] || "! please fill in this field" };
+        if (name === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          return { field: field, message: "! please check your email address" };
+        }
+      }
+      return null;
+    }
+
+    form.querySelectorAll("input, textarea, select").forEach(function (field) {
+      field.addEventListener("input", function () {
+        var box = field.closest(".order-field");
+        if (box) box.classList.remove("field-error");
+      });
+    });
+
     form.addEventListener("submit", async function (event) {
       event.preventDefault();
       var trap = form.querySelector('input[name="website"]');
       if (trap && trap.value.trim() !== "") { say("thank you xo"); return; }
-      if (!form.reportValidity()) return;
+      var problem = firstProblem();
+      if (problem) {
+        flag(problem.field, problem.message);
+        return;
+      }
       var item = picked();
       var data = new FormData(form);
       var payload = {
