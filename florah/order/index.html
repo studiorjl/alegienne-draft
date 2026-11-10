@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>order florah for your venue ~ florah by Alegienne</title>
+<meta name="description" content="order a large seasonal floral arrangement for your venue, restaurant, hotel or occasion. delivered, vase included. florah by Alegienne.">
+<meta name="robots" content="noindex, follow">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  :root{--plum:#1a0d0c;--ivory:#eae3d8;--blush:#e8c9b7;}
+  body{background:var(--ivory);color:var(--plum);font-family:"Courier New",Courier,monospace;margin:0;}
+  .order-wrap{width:min(100% - 40px,620px);margin:0 auto;padding:clamp(40px,7vw,90px) 0 120px;}
+  .order-head{text-align:center;margin-bottom:clamp(26px,5vw,44px);}
+  .order-head img{width:min(46vw,240px);height:auto;display:block;margin:0 auto clamp(18px,3vw,28px);}
+  .order-head h1{font-family:"Times New Roman",serif;font-style:italic;font-weight:400;font-size:clamp(21px,4.6vw,30px);margin:0 0 10px;letter-spacing:0.01em;}
+  .order-head p{font-size:clamp(11px,2.5vw,12.5px);line-height:1.9;margin:0;opacity:.8;}
+  .order-field{display:grid;gap:6px;margin-bottom:clamp(12px,2.4vw,18px);}
+  .order-field label,.order-choice legend{font-size:10.5px;letter-spacing:.16em;opacity:.72;}
+  .order-field label span{letter-spacing:.04em;opacity:.6;}
+  .order-field input,.order-field textarea,.order-field select{width:100%;padding:8px 2px;border:0;border-bottom:1px solid rgba(26,13,12,.28);border-radius:0;background:transparent;color:var(--plum);font-family:inherit;font-size:clamp(12.5px,3.2vw,14px);line-height:1.6;}
+  .order-field input:focus,.order-field textarea:focus,.order-field select:focus{outline:none;border-bottom-color:rgba(26,13,12,.72);}
+  .order-choice{display:flex;flex-wrap:wrap;gap:10px 22px;margin:0 0 clamp(14px,3vw,20px);padding:0;border:0;}
+  .order-choice legend{width:100%;margin-bottom:2px;}
+  .order-choice label{display:inline-flex;align-items:center;gap:8px;font-size:clamp(12px,3vw,13.5px);}
+  .order-button{appearance:none;border:1px solid rgba(26,13,12,.5);background:transparent;color:var(--plum);font-family:inherit;font-size:11px;letter-spacing:.16em;padding:15px 26px;cursor:pointer;transition:background .28s ease,color .28s ease;width:100%;}
+  .order-button:hover{background:var(--plum);color:var(--ivory);}
+  .order-button[disabled]{opacity:.45;cursor:default;}
+  .order-note{font-size:11px;line-height:1.9;opacity:.78;margin:14px 0 0;}
+  .pay-block{margin-top:26px;padding-top:22px;border-top:1px solid rgba(26,13,12,.18);}
+  .pay-block h2{font-family:"Times New Roman",serif;font-style:italic;font-weight:400;font-size:19px;margin:0 0 8px;}
+  .pay-link{display:block;text-align:center;text-decoration:none;background:var(--plum);color:var(--ivory);font-size:11px;letter-spacing:.16em;padding:16px 22px;margin-top:12px;}
+  .pay-link[hidden]{display:none;}
+  .honeypot{position:absolute;left:-9999px;}
+  [hidden]{display:none !important;}
+  .back{display:inline-block;margin-top:30px;font-size:10.5px;letter-spacing:.14em;color:inherit;opacity:.6;text-decoration:none;}
+</style>
+</head>
+<body>
+<main class="order-wrap">
+  <header class="order-head">
+    <img src="../assets/florah-wordmark-email.png" alt="florah">
+    <h1>for venues &amp; occasions</h1>
+    <p>a large seasonal arrangement, made from the market that morning, delivered and set in your space. vase included. every order comes with a complimentary 15 minute creative call, so we can learn your space and your taste before the flowers arrive.</p>
+  </header>
+
+  <form data-venue-order novalidate>
+    <fieldset class="order-choice">
+      <legend>the arrangement</legend>
+      <label><input type="radio" name="item" value="large" checked> the large &middot; A$350</label>
+      <label><input type="radio" name="item" value="xlarge"> the extra large &middot; A$550</label>
+    </fieldset>
+
+    <div class="order-field">
+      <label for="v-business">venue / business / company <span>as it should appear on the invoice</span></label>
+      <input id="v-business" name="business" type="text" autocomplete="organization" required>
+    </div>
+    <div class="order-field">
+      <label for="v-name">your name</label>
+      <input id="v-name" name="name" type="text" autocomplete="name" required>
+    </div>
+    <div class="order-field">
+      <label for="v-email">email</label>
+      <input id="v-email" name="email" type="email" autocomplete="email" required>
+    </div>
+    <div class="order-field">
+      <label for="v-phone">phone <span>so I can reach you on the morning</span></label>
+      <input id="v-phone" name="phone" type="tel" autocomplete="tel">
+    </div>
+    <div class="order-field">
+      <label for="v-address">delivery address</label>
+      <textarea id="v-address" name="address" rows="2" required></textarea>
+    </div>
+    <div class="order-field">
+      <label for="v-access">getting in <span>parking, gates, who to ask for, where to leave it</span></label>
+      <textarea id="v-access" name="access_notes" rows="2"></textarea>
+    </div>
+    <div class="order-field">
+      <label for="v-date">delivery day <span>wednesdays, thursdays or fridays</span></label>
+      <select id="v-date" name="delivery_date" required></select>
+    </div>
+    <div class="order-field">
+      <label for="v-prefs">creative preferences <span>colours, flowers to avoid, the mood of the room, anything at all</span></label>
+      <textarea id="v-prefs" name="preferences" rows="3"></textarea>
+    </div>
+    <fieldset class="order-choice">
+      <legend>the creative call</legend>
+      <label><input type="radio" name="call" value="yes" checked> yes please, 15 minutes</label>
+      <label><input type="radio" name="call" value="no"> not this time</label>
+    </fieldset>
+
+    <input class="honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="order-button" type="submit">reserve the large &middot; A$350</button>
+    <p class="order-note" data-status role="status" hidden></p>
+  </form>
+
+  <div class="pay-block" data-pay hidden>
+    <h2>one more step</h2>
+    <p class="order-note">your arrangement is reserved. pay below to make it real, and your confirmation and invoice will follow by email.</p>
+    <a class="pay-link" data-pay-large href="https://square.link/u/dxJqZyqc" hidden>pay A$350</a>
+    <a class="pay-link" data-pay-xlarge href="https://square.link/u/FnWbD0o9" hidden>pay A$550</a>
+  </div>
+
+  <a class="back" href="../">&larr; back to florah</a>
+</main>
+
+<script>
+  (function () {
+    var form = document.querySelector("[data-venue-order]");
+    if (!form) return;
+    var select = form.querySelector("#v-date");
+    var button = form.querySelector("button[type=submit]");
+    var status = form.querySelector("[data-status]");
+    var payBlock = document.querySelector("[data-pay]");
+    var payLarge = document.querySelector("[data-pay-large]");
+    var payXLarge = document.querySelector("[data-pay-xlarge]");
+
+    var PRICES = { large: 350, xlarge: 550 };
+    var LABELS = { large: "reserve the large", xlarge: "reserve the extra large" };
+
+    function money(n) { return "A$" + n; }
+
+    function fillDates() {
+      var start = new Date();
+      start.setDate(start.getDate() + 7);
+      var added = 0;
+      var placeholder = document.createElement("option");
+      placeholder.value = "";
+      placeholder.textContent = "choose a delivery day";
+      select.appendChild(placeholder);
+      for (var i = 0; i < 70 && added < 24; i++) {
+        var d = new Date(start.getTime() + i * 86400000);
+        var dow = d.getDay();
+        if (dow !== 3 && dow !== 4 && dow !== 5) continue;
+        var opt = document.createElement("option");
+        var iso = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+        opt.value = iso;
+        opt.textContent = d.toLocaleDateString("en-AU", { weekday: "long", day: "numeric", month: "long" });
+        select.appendChild(opt);
+        added++;
+      }
+    }
+
+    function picked() {
+      var el = form.querySelector('input[name="item"]:checked');
+      return el ? el.value : "large";
+    }
+
+    function syncLabel() {
+      var item = picked();
+      button.textContent = LABELS[item] + " · " + money(PRICES[item]);
+    }
+
+    function say(text) {
+      status.textContent = text;
+      status.hidden = false;
+    }
+
+    fillDates();
+    syncLabel();
+    form.querySelectorAll('input[name="item"]').forEach(function (el) {
+      el.addEventListener("change", syncLabel);
+    });
+
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      var trap = form.querySelector('input[name="website"]');
+      if (trap && trap.value.trim() !== "") { say("thank you xo"); return; }
+      if (!form.reportValidity()) return;
+      var item = picked();
+      var data = new FormData(form);
+      var payload = {
+        venue: true,
+        offer: item === "xlarge" ? "extra large floral arrangement" : "large floral arrangement",
+        amount: PRICES[item],
+        business: data.get("business"),
+        name: data.get("name"),
+        email: data.get("email"),
+        phone: data.get("phone"),
+        method: "delivery",
+        address: data.get("address"),
+        access_notes: data.get("access_notes"),
+        delivery_date: data.get("delivery_date"),
+        preferences: data.get("preferences"),
+        call_requested: data.get("call") === "yes"
+      };
+      button.disabled = true;
+      say("reserving your arrangement...");
+      try {
+        var res = await fetch("https://rjl-publisher-insights-agent-a07f3048.base44.app/functions/florahOrder?format=json", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        var json = await res.json().catch(function () { return {}; });
+        if (!res.ok || !json.ok) throw new Error(json.error || "send failed");
+        form.hidden = true;
+        payBlock.hidden = false;
+        (item === "xlarge" ? payXLarge : payLarge).hidden = false;
+        payBlock.scrollIntoView({ behavior: "smooth", block: "center" });
+      } catch (error) {
+        button.disabled = false;
+        say("that did not send. write to florah@alegienne.com.au and I will sort it xo");
+      }
+    });
+  })();
+</script>
+</body>
+</html>

@@ -1092,3 +1092,88 @@ body.has-custom-cursor .custom-cursor {
 .landing-inner > :nth-child(6) { --reveal-delay: 400ms; }
 .landing-inner > :nth-child(7) { --reveal-delay: 470ms; }
 .landing-inner > :nth-child(8) { --reveal-delay: 540ms; }
+
+/* ——— 10 Nov 2026 · Rebekah's refinements ————————————————————————
+   1. footer texture carried across the whole page (menu bar excepted)
+   2. gold Alegienne wordmark in the menu bar
+   3. paper-edge shadows on the menu bar and footer
+   4. footer scaled down, tighter space above the texture
+   5. florah mark no longer slips behind the footer
+   ——————————————————————————————————————————————————————————————— */
+
+/* 1 · the footer's plum texture, laid over the whole sheet, very faint */
+.ivory-paper::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: url("./assets/florah-dark-plum-background-texture.webp") center / cover no-repeat;
+  opacity: 0.085;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+/* 2 · gold wordmark in the menu */
+.menu-alegienne-mark {
+  background: transparent url("../alegienne-wordmark-gold.webp") center / 100% 100% no-repeat;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.menu-alegienne-mark:hover {
+  opacity: 0.86;
+}
+
+/* 3 · paper sitting over the page */
+.menu-bar {
+  box-shadow: 0 1px 10px rgba(104, 116, 88, 0.16);
+}
+
+.site-footer {
+  box-shadow: 0 -1px 12px rgba(104, 116, 88, 0.18);
+}
+
+/* 4 · a smaller footer, sitting closer to the page */
+.site-footer {
+  padding:
+    clamp(22px, 4vw, 38px) 16px
+    calc(clamp(20px, 3.6vw, 34px) + env(safe-area-inset-bottom));
+}
+
+.footer-love {
+  font-size: clamp(9px, 2vw, 11px);
+}
+
+.footer-signature {
+  width: min(29vw, 168px);
+  margin: clamp(4px, 1vw, 7px) auto clamp(8px, 1.7vw, 13px);
+}
+
+.footer-divider {
+  width: min(calc(100vw - 32px), 980px);
+}
+
+.footer-divider-legal {
+  margin: 0 auto clamp(6px, 1.4vw, 10px);
+}
+
+.footer-legal {
+  gap: clamp(5px, 1.6vw, 12px);
+  width: min(100%, 420px);
+  font-size: clamp(7.5px, 1.7vw, 9px);
+}
+
+.footer-copyright {
+  margin-top: clamp(5px, 1.2vw, 8px);
+  font-size: clamp(7.5px, 1.7vw, 9px);
+}
+
+.footer-divider-copyright {
+  margin: clamp(5px, 1.2vw, 8px) auto 0;
+}
+
+/* 5 · the florah mark holds its place and clears the footer by 40px */
+.florah-mark {
+  position: absolute;
+  margin-bottom: 40px;
+}
