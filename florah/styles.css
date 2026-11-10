@@ -1062,6 +1062,27 @@ body.has-custom-cursor .custom-cursor {
   transform: none;
 }
 
+
+.order-field select {
+  width: 100%;
+  padding: 8px 2px;
+  border: 0;
+  border-bottom: 1px solid rgba(26, 13, 12, 0.28);
+  border-radius: 0;
+  background: transparent;
+  color: var(--dark-plum);
+  font-family: "Courier New", "Noto Serif KR", monospace;
+  font-size: clamp(12.5px, 3.2vw, 14px);
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  appearance: none;
+  cursor: pointer;
+}
+.order-field select:focus {
+  outline: none;
+  border-bottom-color: rgba(26, 13, 12, 0.72);
+}
+
 /* cascade the landing reveals */
 .landing-inner > :nth-child(1) { --reveal-delay: 0ms; }
 .landing-inner > :nth-child(2) { --reveal-delay: 90ms; }

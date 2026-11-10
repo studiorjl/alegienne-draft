@@ -166,6 +166,55 @@
         aria-hidden="true"
       >
 
+            <section class="landing-body" aria-label="florah for venues, events and occasions">
+        <div class="landing-inner">
+          <p class="landing-verse landing-lead reveal-on-scroll">for venues &amp; occasions.</p>
+          <p class="landing-verse reveal-on-scroll">a large seasonal arrangement, made from the market that morning, delivered and set in place. for hotels, restaurants, bars, wellness spaces, studios and shops.</p>
+          <p class="landing-verse reveal-on-scroll">the large &mdash; one generous arrangement for a lobby, a bar or a long table. A$350, delivered, vase included.</p>
+          <p class="landing-verse reveal-on-scroll">the extra large &mdash; the large, plus two smaller arrangements to spread across tables. A$550, delivered, vases included.</p>
+          <form class="order-form reveal-on-scroll" data-venue-order aria-label="Order florah for a venue" novalidate>
+            <fieldset class="order-choice">
+              <legend>the arrangement</legend>
+              <label><input type="radio" name="item" value="large" checked> the large &middot; A$350</label>
+              <label><input type="radio" name="item" value="xlarge"> the extra large &middot; A$550</label>
+            </fieldset>
+            <div class="order-field">
+              <label for="venue-business">venue / business / company</label>
+              <input id="venue-business" name="business" type="text" autocomplete="organization" required>
+            </div>
+            <div class="order-field">
+              <label for="venue-name">your name</label>
+              <input id="venue-name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="order-field">
+              <label for="venue-email">email</label>
+              <input id="venue-email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div class="order-field">
+              <label for="venue-phone">phone <span>so I can reach you on the morning</span></label>
+              <input id="venue-phone" name="phone" type="tel" autocomplete="tel">
+            </div>
+            <div class="order-field">
+              <label for="venue-address">delivery address</label>
+              <textarea id="venue-address" name="address" rows="2" required></textarea>
+            </div>
+            <div class="order-field">
+              <label for="venue-access">getting in <span>parking, gates, who to ask for</span></label>
+              <textarea id="venue-access" name="access_notes" rows="2"></textarea>
+            </div>
+            <div class="order-field">
+              <label for="venue-date">delivery day <span>Wednesdays, Thursdays or Fridays</span></label>
+              <select id="venue-date" name="delivery_date" required></select>
+            </div>
+            <input class="order-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <button class="landing-button" type="submit">reserve the large &middot; A$350</button>
+            <p class="landing-verse landing-note" data-venue-status role="status" hidden></p>
+          </form>
+          <p class="landing-verse landing-note reveal-on-scroll" data-venue-thanks hidden>your arrangement is reserved xo a confirmation is on its way to your inbox, with the payment link inside.</p>
+          <p class="landing-verse landing-note reveal-on-scroll">questions first? write to <a href="mailto:florah@alegienne.com.au">florah@alegienne.com.au</a>.</p>
+        </div>
+      </section>
+
             <section class="landing-body" aria-label="florah first bloom — details and ordering">
         <div class="landing-inner">
           <p class="landing-verse landing-lead reveal-on-scroll">first bloom.</p>
@@ -430,6 +479,123 @@
         } catch (error) {
           button.disabled = false;
           button.textContent = label;
+          say("that did not send. write to florah@alegienne.com.au and I will sort it xo");
+        }
+      });
+    })();
+  </script>
+  <script>
+    (() => {
+      const form = document.querySelector("[data-venue-order]");
+      if (!form) return;
+
+      const endpoint = "https://rjl-publisher-insights-agent-a07f3048.base44.app/functions/florahOrder?format=json";
+      const status = form.querySelector("[data-venue-status]");
+      const thanks = document.querySelector("[data-venue-thanks]");
+      const button = form.querySelector('button[type="submit"]');
+      const dateSelect = form.querySelector("#venue-date");
+
+      const ITEMS = {
+        large: { amount: 350, offer: "large floral arrangement", label: "the large", note: "one generous arrangement, vase included" },
+        xlarge: { amount: 550, offer: "extra large floral arrangement", label: "the extra large", note: "the large plus two smaller arrangements, vases included" }
+      };
+
+      const picked = () => {
+        const checked = form.querySelector('input[name="item"]:checked');
+        return ITEMS[checked ? checked.value : "large"];
+      };
+
+      const syncButton = () => {
+        const item = picked();
+        button.textContent = `reserve ${item.label} \u00b7 A$${item.amount}`;
+      };
+
+      // delivery days: Wednesdays, Thursdays and Fridays, from a week out, eight weeks deep
+      const buildDates = () => {
+        if (!dateSelect) return;
+        const now = new Date();
+        const start = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 7);
+        const end = new Date(start.getTime());
+        end.setDate(end.getDate() + 56);
+        const fmtValue = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+        const fmtLabel = (d) => d.toLocaleDateString("en-AU", { weekday: "long", day: "numeric", month: "long" });
+        const placeholder = document.createElement("option");
+        placeholder.value = "";
+        placeholder.textContent = "choose a delivery day";
+        dateSelect.appendChild(placeholder);
+        for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+          const day = d.getDay();
+          if (day !== 3 && day !== 4 && day !== 5) continue;
+          const option = document.createElement("option");
+          option.value = fmtValue(d);
+          option.textContent = fmtLabel(d);
+          dateSelect.appendChild(option);
+        }
+      };
+
+      const say = (message) => {
+        if (!status) return;
+        status.hidden = !message;
+        status.textContent = message || "";
+      };
+
+      form.querySelectorAll('input[name="item"]').forEach((input) => {
+        input.addEventListener("change", syncButton);
+      });
+      syncButton();
+      buildDates();
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const trap = form.querySelector('input[name="website"]');
+        if (trap && trap.value) return;
+
+        const data = new FormData(form);
+        const item = picked();
+        const payload = {
+          venue: true,
+          name: String(data.get("name") || "").trim(),
+          business: String(data.get("business") || "").trim(),
+          email: String(data.get("email") || "").trim(),
+          phone: String(data.get("phone") || "").trim(),
+          method: "delivery",
+          address: String(data.get("address") || "").trim(),
+          access_notes: String(data.get("access_notes") || "").trim(),
+          delivery_date: String(data.get("delivery_date") || "").trim(),
+          offer: item.offer,
+          amount: item.amount
+        };
+
+        if (!payload.name || !payload.email || !payload.business || !payload.address) {
+          say("a few details are missing: name, venue, email and address xo");
+          return;
+        }
+        if (!payload.delivery_date) {
+          say("choose a delivery day from the list xo");
+          return;
+        }
+
+        button.disabled = true;
+        button.textContent = "sending...";
+        say("");
+
+        try {
+          const res = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
+          const json = await res.json().catch(() => ({}));
+          if (!res.ok || !json.ok) throw new Error(json.error || "send failed");
+          form.hidden = true;
+          if (thanks) {
+            thanks.hidden = false;
+            thanks.classList.add("is-visible");
+          }
+        } catch (error) {
+          button.disabled = false;
+          syncButton();
           say("that did not send. write to florah@alegienne.com.au and I will sort it xo");
         }
       });
