@@ -1178,3 +1178,109 @@ body.has-custom-cursor .custom-cursor {
   position: absolute;
   margin-bottom: 40px;
 }
+
+/* ——— 10 Nov 2026 · part two ——————————————————————————————————————
+   6. the footer's texture becomes the whole sheet (menu bar excepted)
+   7. gold wordmark held at its true proportions
+   8. a hairline of the old ivory at the top of the footer
+   ——————————————————————————————————————————————————————————————— */
+
+/* 6 · one dark sheet, everywhere */
+html,
+body {
+  background-color: var(--paper);
+}
+
+body {
+  color: var(--ivory-paper);
+}
+
+.florah-page {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(rgba(26, 13, 12, 0.14), rgba(26, 13, 12, 0.36)),
+    url("./assets/florah-dark-plum-background-texture.webp");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/* the ivory paper layers step aside so the texture reads */
+.ivory-paper {
+  opacity: 0 !important;
+  background: none !important;
+}
+
+.ivory-paper::after {
+  display: none !important;
+}
+
+/* ink flips to ivory on the texture */
+.landing-verse,
+.landing-lead,
+.landing-price,
+.landing-note,
+.florah-page h1,
+.florah-page h2,
+.florah-page p {
+  color: var(--ivory-paper);
+}
+
+.landing-price,
+.landing-lead {
+  color: var(--ivory-blush);
+}
+
+.order-field label,
+.order-choice legend {
+  color: rgba(234, 227, 216, 0.74);
+}
+
+.order-field input,
+.order-field textarea,
+.order-field select {
+  color: var(--ivory-paper);
+  border-bottom-color: rgba(234, 227, 216, 0.3);
+}
+
+.order-field input:focus,
+.order-field textarea:focus,
+.order-field select:focus {
+  border-bottom-color: rgba(234, 227, 216, 0.8);
+}
+
+.order-field select option {
+  color: var(--dark-plum);
+  background: var(--ivory-paper);
+}
+
+.landing-button {
+  border-color: rgba(234, 227, 216, 0.55);
+  background: var(--ivory-paper);
+  color: var(--dark-plum);
+}
+
+.landing-button:hover {
+  background: var(--ivory-blush);
+  color: var(--dark-plum);
+}
+
+/* 7 · gold wordmark, true proportions, whatever the viewport */
+.menu-alegienne-mark {
+  aspect-ratio: auto;
+  height: calc(var(--menu-logo-width) * 52 / 359);
+  background: transparent url("./assets/alegienne-wordmark-gold.png") center / contain no-repeat;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+/* 8 · the hairline where the footer begins */
+.site-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(234, 227, 216, 0.55);
+}

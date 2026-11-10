@@ -9,35 +9,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>order florah for your venue ~ florah by Alegienne</title>
 <meta name="description" content="order a large seasonal floral arrangement for your venue, restaurant, hotel or occasion. delivered, vase included. florah by Alegienne.">
-<meta name="robots" content="noindex, follow">
-<link rel="stylesheet" href="../styles.css?v=5">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="stylesheet" href="../styles.css?v=6">
 <style>
   :root{--plum:#1a0d0c;--ivory:#eae3d8;--blush:#e8c9b7;}
-  body{background:var(--ivory);color:var(--plum);font-family:"Courier New",Courier,monospace;margin:0;}
+  body{background-color:var(--plum);background-image:linear-gradient(rgba(26,13,12,.14),rgba(26,13,12,.36)),url("../assets/florah-dark-plum-background-texture.webp");background-position:center;background-size:cover;background-attachment:fixed;color:var(--ivory);font-family:"Courier New",Courier,monospace;margin:0;}
   .order-wrap{width:min(100% - 40px,620px);margin:0 auto;padding:clamp(40px,7vw,90px) 0 120px;}
   .order-head{text-align:center;margin-bottom:clamp(26px,5vw,44px);}
   .order-head img{width:min(46vw,240px);height:auto;display:block;margin:0 auto clamp(18px,3vw,28px);}
-  .order-head h1{font-family:"Times New Roman",serif;font-style:italic;font-weight:400;font-size:clamp(21px,4.6vw,30px);margin:0 0 10px;letter-spacing:0.01em;}
-  .order-head p{font-size:clamp(11px,2.5vw,12.5px);line-height:1.9;margin:0;opacity:.8;}
+  .order-head h1{font-family:"Times New Roman",serif;font-style:italic;font-weight:400;font-size:clamp(21px,4.6vw,30px);margin:0 0 10px;letter-spacing:0.01em;color:var(--ivory);}
+  .order-head p{font-size:clamp(11px,2.5vw,12.5px);line-height:1.9;margin:0;opacity:.82;color:var(--ivory);}
   .order-field{display:grid;gap:6px;margin-bottom:clamp(12px,2.4vw,18px);}
-  .order-field label,.order-choice legend{font-size:10.5px;letter-spacing:.16em;opacity:.72;}
+  .order-field label,.order-choice legend{font-size:10.5px;letter-spacing:.16em;opacity:.74;color:var(--ivory);}
   .order-field label span{letter-spacing:.04em;opacity:.6;}
-  .order-field input,.order-field textarea,.order-field select{width:100%;padding:8px 2px;border:0;border-bottom:1px solid rgba(26,13,12,.28);border-radius:0;background:transparent;color:var(--plum);font-family:inherit;font-size:clamp(12.5px,3.2vw,14px);line-height:1.6;}
-  .order-field input:focus,.order-field textarea:focus,.order-field select:focus{outline:none;border-bottom-color:rgba(26,13,12,.72);}
-  .order-choice{display:flex;flex-wrap:wrap;gap:10px 22px;margin:0 0 clamp(14px,3vw,20px);padding:0;border:0;}
+  .order-field input,.order-field textarea,.order-field select{width:100%;padding:8px 2px;border:0;border-bottom:1px solid rgba(234,227,216,.3);border-radius:0;background:transparent;color:var(--ivory);font-family:inherit;font-size:clamp(12.5px,3.2vw,14px);line-height:1.6;}
+  .order-field input:focus,.order-field textarea:focus,.order-field select:focus{outline:none;border-bottom-color:rgba(234,227,216,.8);}
+  .order-field select option{color:var(--plum);background:var(--ivory);}
+  .order-choice{display:flex;flex-wrap:wrap;gap:10px 22px;margin:0 0 clamp(14px,3vw,20px);padding:0;border:0;color:var(--ivory);}
   .order-choice legend{width:100%;margin-bottom:2px;}
-  .order-choice label{display:inline-flex;align-items:center;gap:8px;font-size:clamp(12px,3vw,13.5px);}
-  .order-button{appearance:none;border:1px solid rgba(26,13,12,.5);background:transparent;color:var(--plum);font-family:inherit;font-size:11px;letter-spacing:.16em;padding:15px 26px;cursor:pointer;transition:background .28s ease,color .28s ease;width:100%;}
-  .order-button:hover{background:var(--plum);color:var(--ivory);}
+  .order-choice label{display:inline-flex;align-items:center;gap:8px;font-size:clamp(12px,3vw,13.5px);color:var(--ivory);}
+  .order-button{appearance:none;border:1px solid rgba(234,227,216,.55);background:var(--ivory);color:var(--plum);font-family:inherit;font-size:11px;letter-spacing:.16em;padding:15px 26px;cursor:pointer;transition:background .28s ease,color .28s ease;width:100%;}
+  .order-button:hover{background:var(--blush);color:var(--plum);}
   .order-button[disabled]{opacity:.45;cursor:default;}
-  .order-note{font-size:11px;line-height:1.9;opacity:.78;margin:14px 0 0;}
-  .pay-block{margin-top:26px;padding-top:22px;border-top:1px solid rgba(26,13,12,.18);}
-  .pay-block h2{font-family:"Times New Roman",serif;font-style:italic;font-weight:400;font-size:19px;margin:0 0 8px;}
-  .pay-link{display:block;text-align:center;text-decoration:none;background:var(--plum);color:var(--ivory);font-size:11px;letter-spacing:.16em;padding:16px 22px;margin-top:12px;}
+  .order-note{font-size:11px;line-height:1.9;opacity:.78;margin:14px 0 0;color:var(--ivory);}
+  .pay-block{margin-top:26px;padding-top:22px;border-top:1px solid rgba(234,227,216,.22);}
+  .pay-block h2{font-family:"Times New Roman",serif;font-style:italic;font-weight:400;font-size:19px;margin:0 0 8px;color:var(--ivory);}
+  .pay-link{display:block;text-align:center;text-decoration:none;background:var(--ivory);color:var(--plum);font-size:11px;letter-spacing:.16em;padding:16px 22px;margin-top:12px;}
   .pay-link[hidden]{display:none;}
   .honeypot{position:absolute;left:-9999px;}
   [hidden]{display:none !important;}
-  .back{display:inline-block;margin-top:30px;font-size:10.5px;letter-spacing:.14em;color:inherit;opacity:.6;text-decoration:none;}
+.back{display:inline-block;margin-top:30px;font-size:10.5px;letter-spacing:.14em;color:inherit;opacity:.6;text-decoration:none;}
 </style>
 </head>
 <body>
