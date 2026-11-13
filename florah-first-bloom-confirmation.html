@@ -16,6 +16,15 @@
 
   <!-- alegienne cursor: a little dark maroon circle, in the manner of studio rjl -->
   <style>
+    /* florah pages speak PT Mono in place of Courier New */
+    @font-face {
+      font-family: "PT Mono";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("/florah/assets/fonts/pt-mono-latin.woff2") format("woff2");
+    }
+    body { font-family: "PT Mono", "Courier New", monospace; }
     * { cursor: none !important; }
     .alegienne-cursor {
       position: fixed; top: 0; left: 0; z-index: 10000;

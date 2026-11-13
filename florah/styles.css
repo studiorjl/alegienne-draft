@@ -6,9 +6,9 @@
   --hover-mushroom: #9f9585;
   --stage-width: min(100vw, 77.14285714svh);
   --stage-height: 100svh;
-  --menu-height: min(12.71428571svh, 16.48148148vw);
+  --menu-height: min(10.22222222svh, 13.25vw);          /* 92px on a 1440 x 900 desktop, 52px on a phone */
   --menu-logo-width: min(29.81481481vw, 23svh, 214.666667px);
-  --menu-logo-top: min(5.83333333vw, 4.5svh, 42px);
+  --menu-logo-top: min(4.689vw, 3.6176svh, 33.8px);
 }
 
 * {
@@ -364,7 +364,7 @@ body.has-custom-cursor button {
 .footer-legal,
 .footer-copyright {
   margin: 0;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "PT Mono", "Courier New", monospace;
   font-weight: 400;
   letter-spacing: 0;
   color: var(--ivory-blush);
@@ -883,7 +883,7 @@ body.has-custom-cursor .custom-cursor {
 
 .landing-verse {
   margin: 0;
-  font-family: "Courier New", "Noto Serif KR", monospace;
+  font-family: "PT Mono", "Courier New", monospace;
   font-size: clamp(13px, 3.4vw, 15px);
   line-height: 1.7;
   letter-spacing: 0.02em;
@@ -910,7 +910,7 @@ body.has-custom-cursor .custom-cursor {
   border-radius: 999px;
   color: var(--paper);
   text-decoration: none;
-  font-family: "Courier New", "Noto Serif KR", monospace;
+  font-family: "PT Mono", "Courier New", monospace;
   font-size: 0.74rem;
   letter-spacing: 0.14em;
   background: transparent;
@@ -955,7 +955,7 @@ body.has-custom-cursor .custom-cursor {
 
 .order-field label,
 .order-choice legend {
-  font-family: "Courier New", "Noto Serif KR", monospace;
+  font-family: "PT Mono", "Courier New", monospace;
   font-size: 10.5px;
   letter-spacing: 0.16em;
   color: var(--dark-plum);
@@ -976,7 +976,7 @@ body.has-custom-cursor .custom-cursor {
   border-radius: 0;
   background: transparent;
   color: var(--dark-plum);
-  font-family: "Courier New", "Noto Serif KR", monospace;
+  font-family: "PT Mono", "Courier New", monospace;
   font-size: clamp(12.5px, 3.2vw, 14px);
   line-height: 1.6;
   letter-spacing: 0.02em;
@@ -1009,7 +1009,7 @@ body.has-custom-cursor .custom-cursor {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: "Courier New", "Noto Serif KR", monospace;
+  font-family: "PT Mono", "Courier New", monospace;
   font-size: clamp(12px, 3vw, 13.5px);
   letter-spacing: 0.02em;
   color: var(--dark-plum);
@@ -1050,7 +1050,7 @@ body.has-custom-cursor .custom-cursor {
 .order-form .landing-button {
   justify-self: center;
   width: auto;
-  font-family: "Courier New", "Noto Serif KR", monospace;
+  font-family: "PT Mono", "Courier New", monospace;
   font-size: 0.74rem;
   letter-spacing: 0.14em;
   cursor: pointer;
@@ -1071,7 +1071,7 @@ body.has-custom-cursor .custom-cursor {
   border-radius: 0;
   background: transparent;
   color: var(--dark-plum);
-  font-family: "Courier New", "Noto Serif KR", monospace;
+  font-family: "PT Mono", "Courier New", monospace;
   font-size: clamp(12.5px, 3.2vw, 14px);
   line-height: 1.6;
   letter-spacing: 0.02em;
@@ -1283,4 +1283,68 @@ body {
   right: 0;
   height: 1px;
   background: rgba(234, 227, 216, 0.55);
+}
+
+/* 13 Nov 2026 · Rebekah's list ————————————————————————————————————————
+   1. florah nav in #fbf2ea
+   2. hamburger lines in #280c08
+   3. no hover box on the gold Alegienne, the link home stays
+   4. nav 114px down to 92px on desktop, mobile scaled with it
+   5. PT Mono across the florah pages, in place of Courier New
+   ——————————————————————————————————————————————————————————————————— */
+
+/* 5 · PT Mono, self hosted */
+@font-face {
+  font-family: "PT Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./assets/fonts/pt-mono-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "PT Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./assets/fonts/pt-mono-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* 1 · the nav in cream */
+.menu-bar,
+.is-scrolled .menu-bar {
+  background: #fbf2ea;
+}
+
+.menu-bar::after {
+  background: rgba(40, 12, 8, 0.18);
+}
+
+/* 2 · hamburger lines in ink */
+.menu-toggle span,
+.menu-toggle:hover span {
+  background-color: #280c08;
+}
+
+/* 3 · no hover box on the gold wordmark; it stays gold, and still links home */
+.menu-alegienne-mark:hover,
+.menu-alegienne-mark:focus-visible {
+  background: transparent url("./assets/alegienne-wordmark-gold.png") center / contain no-repeat;
+  opacity: 1;
+}
+
+.menu-alegienne-mark:focus-visible {
+  outline: 1px solid #280c08;
+  outline-offset: 6px;
+}
+
+/* 5 · the menu panel speaks PT Mono too */
+body .aleg-panel .aleg-panel-nav a {
+  font-family: "PT Mono", "Courier New", monospace;
 }
