@@ -304,6 +304,33 @@ body.has-custom-cursor button {
     alegienne-rise-to-menu 1.6s cubic-bezier(0.25, 0.72, 0.2, 1) 8.55s forwards;
 }
 
+.florah-lockup {
+  position: absolute;
+  display: block;
+  left: 50%;
+  top: 52svh;
+  z-index: 4;
+  width: auto;
+  height: min(54svh, 68vw);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  user-select: none;
+  animation: florah-lockup-arrive 1.7s cubic-bezier(0.22, 0.72, 0.24, 1) 8.3s both;
+}
+
+@keyframes florah-lockup-arrive {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 14px));
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
 .florah-mark {
   position: fixed;
   display: block;
@@ -503,6 +530,12 @@ body.has-custom-cursor .custom-cursor {
 
 .intro-seen .menu-bar::after {
   opacity: 1;
+  animation: none;
+}
+
+.intro-seen .florah-lockup {
+  opacity: 1;
+  transform: translate(-50%, -50%);
   animation: none;
 }
 
@@ -790,7 +823,8 @@ body.has-custom-cursor .custom-cursor {
   .sigil-sparkle,
   .by-mark,
   .alegienne-mark,
-  .florah-mark {
+  .florah-mark,
+  .florah-lockup {
     animation-duration: 1ms;
     animation-delay: 0ms;
     animation-iteration-count: 1;
@@ -811,6 +845,11 @@ body.has-custom-cursor .custom-cursor {
   .florah-mark {
     opacity: 0.92;
     transform: translateX(-50%);
+  }
+
+  .florah-lockup {
+    opacity: 1;
+    transform: translate(-50%, -50%);
   }
 
   .ivory-paper,
