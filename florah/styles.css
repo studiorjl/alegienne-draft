@@ -1348,3 +1348,37 @@ body {
 body .aleg-panel .aleg-panel-nav a {
   font-family: "PT Mono", "Courier New", monospace;
 }
+
+/* 13 Nov 2026 · the embossed Alegienne wordmark sits in the nav, gold on hover.
+   same width as the gold mark it replaces, so the scale is unchanged. */
+.menu-alegienne-mark,
+.menu-alegienne-mark:hover,
+.menu-alegienne-mark:focus-visible {
+  aspect-ratio: auto;
+  height: calc(var(--menu-logo-width) * 101 / 737);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  opacity: 1;
+  transition: none;
+}
+
+.menu-alegienne-mark {
+  background-image: url("./assets/alegienne-wordmark-embossed.png");
+}
+
+.menu-alegienne-mark:hover,
+.menu-alegienne-mark:focus-visible {
+  background-image: url("./assets/alegienne-wordmark-gold.png");
+}
+
+/* the gold file is preloaded by this pseudo element so the hover never flickers */
+.menu-alegienne-mark::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  background: url("./assets/alegienne-wordmark-gold.png") no-repeat;
+}
