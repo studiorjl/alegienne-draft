@@ -312,7 +312,7 @@ body.has-custom-cursor button {
   z-index: 4;
   width: min(calc(713 / 1080 * 100vw), calc(713 / 1080 * 77.14285714svh));
   opacity: 0;
-  filter: drop-shadow(0 0 7px rgba(232, 201, 183, 0.08));
+  filter: drop-shadow(0 0 7px rgba(175, 171, 152, 0.10));
   transform: translateX(-50%);
   pointer-events: none;
   user-select: none;
